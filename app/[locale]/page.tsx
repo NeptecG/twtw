@@ -45,8 +45,8 @@ export default async function HomePage({
           <div className="absolute inset-0 bg-gradient-to-b from-ink/70 via-ink/40 to-ink/75" />
         </div>
 
-        <div className="container-wide flex min-h-[86vh] flex-col justify-end pb-20 pt-32 text-[#f6f1e6]">
-          <p className="eyebrow animate-fade-up text-[#f6f1e6]/80">{t("heroKicker")}</p>
+        <div className="container-wide flex min-h-[86vh] flex-col justify-end pb-20 pt-32 text-[#e6f3de]">
+          <p className="eyebrow animate-fade-up text-[#e6f3de]/80">{t("heroKicker")}</p>
           <h1
             className="animate-fade-up mt-4 max-w-4xl text-5xl font-medium leading-[1.02] tracking-tight sm:text-6xl md:text-7xl"
             style={{ animationDelay: "80ms" }}
@@ -54,7 +54,7 @@ export default async function HomePage({
             {t("heroTitle")}
           </h1>
           <p
-            className="animate-fade-up mt-6 max-w-xl text-lg leading-relaxed text-[#f6f1e6]/85"
+            className="animate-fade-up mt-6 max-w-xl text-lg leading-relaxed text-[#e6f3de]/85"
             style={{ animationDelay: "160ms" }}
           >
             {t("heroSubtitle")}
@@ -72,7 +72,7 @@ export default async function HomePage({
             </Link>
             <Link
               href="/about"
-              className="inline-flex items-center gap-2 rounded-full border border-[#f6f1e6]/40 px-7 py-3.5 text-sm font-semibold text-[#f6f1e6] transition-colors hover:bg-[#f6f1e6]/10"
+              className="inline-flex items-center gap-2 rounded-full border border-[#e6f3de]/40 px-7 py-3.5 text-sm font-semibold text-[#e6f3de] transition-colors hover:bg-[#e6f3de]/10"
             >
               {t("secondaryCta")}
             </Link>

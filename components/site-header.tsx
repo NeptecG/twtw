@@ -43,23 +43,22 @@ export function SiteHeader() {
 
         {/* Desktop nav */}
         <nav className="hidden items-center gap-8 md:flex">
-          {NAV.map((item) => (
-            <Link
-              key={item.key}
-              href={item.href}
-              className={cn(
-                "relative text-sm font-medium tracking-wide transition-colors",
-                isActive(pathname, item.href)
-                  ? "text-foreground"
-                  : "text-muted-foreground hover:text-foreground",
-              )}
-            >
-              {t(item.key)}
-              {isActive(pathname, item.href) && (
-                <span className="absolute -bottom-1.5 left-0 h-px w-full bg-terracotta" />
-              )}
-            </Link>
-          ))}
+          {NAV.map((item) => {
+            const active = isActive(pathname, item.href);
+            return (
+              <Link
+                key={item.key}
+                href={item.href}
+                data-active={active}
+                className={cn(
+                  "nav-underline text-sm font-medium tracking-wide transition-colors",
+                  active ? "text-foreground" : "text-muted-foreground hover:text-foreground",
+                )}
+              >
+                {t(item.key)}
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="flex items-center gap-3">

@@ -61,7 +61,7 @@
   --secondary: #c7e5d0;
   --secondary-foreground: #173a2e;
   --muted: #d6ead0;
-  --muted-foreground: #4d6b5f;
+  --muted-foreground: #3c574b;
   --accent: #cfe8d6;
   --accent-foreground: #173a2e;
   --destructive: #b3402c;
@@ -145,6 +145,25 @@
   /* Thin uppercase eyebrow label */
   .eyebrow {
     @apply font-sans text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground;
+  }
+
+  /* Animated nav underline — reveals from the left on hover / active */
+  .nav-underline {
+    position: relative;
+  }
+  .nav-underline::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 100%;
+    bottom: -4px;
+    height: 1.5px;
+    background: var(--terracotta);
+    transition: right 0.28s cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+  .nav-underline:hover::after,
+  .nav-underline[data-active="true"]::after {
+    right: 0;
   }
 
   /* Staggered fade-up on load */

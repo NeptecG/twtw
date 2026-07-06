@@ -29,7 +29,9 @@ export function SiteFooter() {
         </div>
 
         <div>
-          <h3 className="eyebrow text-sea-foreground/60">{t("footer.quickLinks")}</h3>
+          <h3 className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-sea-foreground/70">
+            {t("footer.quickLinks")}
+          </h3>
           <ul className="mt-4 space-y-2.5 text-sm">
             {NAV.map((item) => (
               <li key={item.key}>
@@ -45,7 +47,9 @@ export function SiteFooter() {
         </div>
 
         <div>
-          <h3 className="eyebrow text-sea-foreground/60">{t("footer.contact")}</h3>
+          <h3 className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-sea-foreground/70">
+            {t("footer.contact")}
+          </h3>
           <ul className="mt-4 space-y-2.5 text-sm text-sea-foreground/80">
             <li>
               <a href="tel:+302634000000" className="transition-colors hover:text-sea-foreground">
