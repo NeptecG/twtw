@@ -72,6 +72,20 @@ export async function getApartmentBySlug(slug: string): Promise<Apartment | null
   return rows[0] ?? null;
 }
 
+export async function getApartmentById(apartmentId: string): Promise<Apartment | null> {
+  if (!hasDb) {
+    return placeholderApartments.find((a) => a.id === apartmentId) ?? null;
+  }
+
+  const { db } = await import("./db/client");
+  const rows = await db
+    .select()
+    .from(apartments)
+    .where(eq(apartments.id, apartmentId))
+    .limit(1);
+  return rows[0] ?? null;
+}
+
 export async function getApartmentAvailability(apartmentId: string): Promise<{
   blocks: { startDate: string; endDate: string }[];
   confirmed: { checkIn: string; checkOut: string }[];
