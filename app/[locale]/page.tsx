@@ -65,7 +65,7 @@ export default async function HomePage({
           >
             <Link
               href="/apartments"
-              className="inline-flex items-center gap-2 rounded-full bg-terracotta px-7 py-3.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-[#a33f26]"
+              className="inline-flex items-center gap-2 rounded-full bg-terracotta px-7 py-3.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-[#379e86]"
             >
               {t("cta")}
               <ArrowRight className="h-4 w-4" />
@@ -164,7 +164,7 @@ export default async function HomePage({
           <p className="mx-auto mt-4 max-w-xl text-sea-foreground/80">{t("contactCtaText")}</p>
           <Link
             href="/contact"
-            className="mt-8 inline-flex items-center gap-2 rounded-full bg-terracotta px-7 py-3.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-[#a33f26]"
+            className="mt-8 inline-flex items-center gap-2 rounded-full bg-terracotta px-7 py-3.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-[#379e86]"
           >
             {t("contactCtaButton")}
             <ArrowRight className="h-4 w-4" />

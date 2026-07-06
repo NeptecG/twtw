@@ -66,7 +66,7 @@ export function SiteHeader() {
           <LanguageSwitcher className="hidden sm:inline-flex" />
           <Link
             href="/apartments"
-            className="hidden rounded-full bg-terracotta px-5 py-2 text-sm font-semibold text-primary-foreground transition-colors hover:bg-[#a33f26] md:inline-block"
+            className="hidden rounded-full bg-terracotta px-5 py-2 text-sm font-semibold text-primary-foreground transition-colors hover:bg-[#379e86] md:inline-block"
           >
             {t("bookNow")}
           </Link>
@@ -93,7 +93,7 @@ export function SiteHeader() {
                 onClick={() => setOpen(false)}
                 className={cn(
                   "animate-fade-up border-b border-border/60 py-3 font-display text-2xl",
-                  isActive(pathname, item.href) ? "text-terracotta" : "text-foreground",
+                  isActive(pathname, item.href) ? "text-sea" : "text-foreground",
                 )}
                 style={{ animationDelay: `${i * 40}ms` }}
               >

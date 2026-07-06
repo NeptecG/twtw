@@ -56,7 +56,7 @@ export function ApartmentCard({
         </div>
 
         <div className="mt-auto flex items-baseline gap-1 pt-5">
-          <span className="text-lg font-semibold text-terracotta">{price}</span>
+          <span className="text-lg font-semibold text-sea">{price}</span>
           <span className="text-sm text-muted-foreground">{t("perNight")}</span>
         </div>
       </div>

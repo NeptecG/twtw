@@ -198,7 +198,7 @@ export function BookingRequestForm({
       <Button
         type="submit"
         disabled={submitting || !ready}
-        className="w-full rounded-full bg-terracotta py-6 text-base font-semibold text-primary-foreground hover:bg-[#a33f26]"
+        className="w-full rounded-full bg-terracotta py-6 text-base font-semibold text-primary-foreground hover:bg-[#379e86]"
       >
         {submitting ? t("submitting") : tApt("requestToBook")}
       </Button>

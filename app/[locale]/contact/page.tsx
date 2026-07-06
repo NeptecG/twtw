@@ -53,7 +53,7 @@ export default async function ContactPage({
                   {d.href ? (
                     <a
                       href={d.href}
-                      className="text-lg text-foreground transition-colors hover:text-terracotta"
+                      className="text-lg text-foreground transition-colors hover:text-sea"
                     >
                       {d.value}
                     </a>

@@ -155,7 +155,7 @@ export function ApartmentFilters() {
               className={cn(
                 "rounded-full border px-3.5 py-1.5 text-sm transition-colors",
                 active
-                  ? "border-terracotta bg-terracotta/10 text-terracotta"
+                  ? "border-sea bg-sea/10 text-sea"
                   : "border-border bg-background text-muted-foreground hover:text-foreground",
               )}
             >

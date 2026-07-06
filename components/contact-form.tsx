@@ -51,7 +51,7 @@ export function ContactForm() {
       </div>
       <Button
         type="submit"
-        className="rounded-full bg-terracotta px-7 py-6 text-base font-semibold text-primary-foreground hover:bg-[#a33f26]"
+        className="rounded-full bg-terracotta px-7 py-6 text-base font-semibold text-primary-foreground hover:bg-[#379e86]"
       >
         {t("send")}
       </Button>
