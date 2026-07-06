@@ -1,7 +1,7 @@
 {
   "meta": {
     "siteName": "TWTW Naupaktos",
-    "defaultDescription": "Handpicked holiday apartments in Naupaktos, Greece. By the Venetian harbour, minutes from the beach."
+    "defaultDescription": "A small apartment complex in Naupaktos, Greece, by the Venetian harbour and a few steps from the sea, the old town and the beach. Every apartment in one building."
   },
   "nav": {
     "home": "Home",
@@ -13,15 +13,15 @@
   "home": {
     "heroKicker": "Naupaktos · Greece",
     "heroTitle": "Stay by the Venetian harbour",
-    "heroSubtitle": "Handpicked apartments in the heart of Naupaktos, steps from the sea, the old town and the beach.",
+    "heroSubtitle": "A small apartment complex in the heart of Naupaktos, a few steps from the sea, the old town and the beach.",
     "cta": "Browse apartments",
     "secondaryCta": "The area",
-    "featured": "Featured stays",
-    "featuredSubtitle": "A few of our favourite places to wake up in Naupaktos.",
+    "featured": "Our apartments",
+    "featuredSubtitle": "Every apartment in the complex, each with its own character.",
     "viewAll": "View all apartments",
     "whyTitle": "Why stay with us",
     "why1Title": "By the sea",
-    "why1Text": "Every apartment is a short walk from the harbour and the beach.",
+    "why1Text": "The whole complex is a short walk from the harbour and the beach.",
     "why2Title": "Local hosts",
     "why2Text": "Cared for by people who live here and answer fast.",
     "why3Title": "Simple booking",
@@ -127,7 +127,7 @@
     "orEmail": "Or email us directly at"
   },
   "footer": {
-    "tagline": "Handpicked apartments in Naupaktos.",
+    "tagline": "A small apartment complex in Naupaktos.",
     "quickLinks": "Explore",
     "contact": "Contact",
     "rights": "All rights reserved."
