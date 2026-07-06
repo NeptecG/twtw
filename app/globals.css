@@ -1,0 +1,167 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-mono);
+
+  /* Brand palette — Aegean editorial */
+  --color-sea: var(--sea);
+  --color-sea-foreground: var(--sea-foreground);
+  --color-terracotta: var(--terracotta);
+  --color-sand: var(--sand);
+  --color-olive: var(--olive);
+  --color-ink: var(--ink);
+
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.4);
+}
+
+:root {
+  --radius: 0.5rem;
+
+  --background: #f6f1e6;
+  --foreground: #17272f;
+  --card: #fffdf7;
+  --card-foreground: #17272f;
+  --popover: #fffdf7;
+  --popover-foreground: #17272f;
+
+  --primary: #b8482c;
+  --primary-foreground: #fff6ef;
+  --secondary: #ece3d1;
+  --secondary-foreground: #17272f;
+  --muted: #ede7d9;
+  --muted-foreground: #5d6a6f;
+  --accent: #e7dcc6;
+  --accent-foreground: #17272f;
+  --destructive: #b23b28;
+  --border: #e2d7c1;
+  --input: #ded1b7;
+  --ring: #123b49;
+
+  /* Brand tokens */
+  --sea: #123b49;
+  --sea-foreground: #f6f1e6;
+  --terracotta: #b8482c;
+  --sand: #ece3d1;
+  --olive: #6b7150;
+  --ink: #17272f;
+}
+
+.dark {
+  --background: #0e1e25;
+  --foreground: #f1e9da;
+  --card: #132a33;
+  --card-foreground: #f1e9da;
+  --popover: #132a33;
+  --popover-foreground: #f1e9da;
+
+  --primary: #d0694a;
+  --primary-foreground: #0e1e25;
+  --secondary: #1d3540;
+  --secondary-foreground: #f1e9da;
+  --muted: #1d3540;
+  --muted-foreground: #a9b6b3;
+  --accent: #21414d;
+  --accent-foreground: #f1e9da;
+  --destructive: #e06a55;
+  --border: #26424d;
+  --input: #26424d;
+  --ring: #7fb0c0;
+
+  --sea: #8ec3d4;
+  --sea-foreground: #0e1e25;
+  --terracotta: #d0694a;
+  --sand: #1d3540;
+  --olive: #9aa578;
+  --ink: #f1e9da;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    /* Faint limestone texture: two soft radial washes over the paper */
+    background-image:
+      radial-gradient(60rem 60rem at 100% -10%, color-mix(in oklab, var(--sea) 5%, transparent), transparent 60%),
+      radial-gradient(50rem 50rem at -10% 110%, color-mix(in oklab, var(--terracotta) 6%, transparent), transparent 55%);
+    font-feature-settings: "cv01", "ss01";
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4, h5 {
+    @apply font-display tracking-tight;
+    font-weight: 500;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--terracotta) 24%, transparent);
+    color: var(--ink);
+  }
+}
+
+@layer utilities {
+  /* Editorial page width */
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
+  .container-wide {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8;
+  }
+
+  /* Thin uppercase eyebrow label */
+  .eyebrow {
+    @apply font-sans text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground;
+  }
+
+  /* Staggered fade-up on load */
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(1.25rem); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade-up {
+    animation: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .hairline {
+    @apply border-t border-border;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up {
+    animation: none;
+  }
+}
