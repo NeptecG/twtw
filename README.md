@@ -19,14 +19,14 @@ real database and enable booking emails, see **[SETUP.md](SETUP.md)**.
 
 ## Structure
 
-- `app/[locale]/` — public pages (home, apartments, apartment detail, about, contact)
-- `app/api/booking-request/` — validate + store + email a booking request
-- `lib/availability.ts` — pure availability computation (unit-tested)
-- `lib/booking-validation.ts` — request validation schema (unit-tested)
-- `lib/apartments.ts` — data access (falls back to placeholders with no DB)
-- `lib/db/schema.ts` — Drizzle database schema
-- `messages/` — Greek + English translations
-- `docs/superpowers/` — design spec and implementation plan
+- `app/[locale]/` - public pages (home, apartments, apartment detail, about, contact)
+- `app/api/booking-request/` - validate + store + email a booking request
+- `lib/availability.ts` - pure availability computation (unit-tested)
+- `lib/booking-validation.ts` - request validation schema (unit-tested)
+- `lib/apartments.ts` - data access (falls back to placeholders with no DB)
+- `lib/db/schema.ts` - Drizzle database schema
+- `messages/` - Greek + English translations
+- `docs/superpowers/` - design spec and implementation plan
 
 ## Roadmap
 

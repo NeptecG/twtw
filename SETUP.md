@@ -1,4 +1,4 @@
-# TWTW Naupaktos — Setup Guide
+# TWTW Naupaktos - Setup Guide
 
 This is the Phase 1 public booking site: bilingual (Greek/English) apartment
 listings with a live availability calendar and a request-to-book flow that
@@ -16,7 +16,7 @@ npm run dev        # http://localhost:3000  (redirects to /el)
 
 In this "offline" mode, booking requests are validated and confirmed to the
 guest, but not stored and not emailed (there is nowhere to store or send them
-yet). Everything else — browsing, filtering, calendars, both languages — is
+yet). Everything else - browsing, filtering, calendars, both languages - is
 fully live.
 
 ## Going live (real bookings + emails)

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { setRequestLocale, getTranslations } from "next-intl/server";
-import { Waves, Heart, CalendarCheck, Sparkles, ArrowRight } from "lucide-react";
+import { Waves, Heart, CalendarCheck, Sparkles } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { listApartments } from "@/lib/apartments";
 import { ApartmentCard } from "@/components/apartment-card";
@@ -68,7 +68,6 @@ export default async function HomePage({
               className="inline-flex items-center gap-2 rounded-full bg-terracotta px-7 py-3.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-[#379e86]"
             >
               {t("cta")}
-              <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
               href="/about"
@@ -92,7 +91,6 @@ export default async function HomePage({
             className="group inline-flex items-center gap-2 text-sm font-semibold text-sea"
           >
             {t("viewAll")}
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
 
@@ -151,7 +149,6 @@ export default async function HomePage({
               className="group mt-8 inline-flex items-center gap-2 text-sm font-semibold text-sea"
             >
               {t("secondaryCta")}
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
           </div>
         </div>
@@ -167,7 +164,6 @@ export default async function HomePage({
             className="mt-8 inline-flex items-center gap-2 rounded-full bg-terracotta px-7 py-3.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-[#379e86]"
           >
             {t("contactCtaButton")}
-            <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
       </section>

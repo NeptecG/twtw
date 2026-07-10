@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { setRequestLocale, getTranslations } from "next-intl/server";
-import { ArrowLeft, Users, BedDouble, Bath, Ruler, Waves, MapPin } from "lucide-react";
+import { Users, BedDouble, Bath, Ruler, Waves, MapPin } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { getApartmentBySlug, getApartmentAvailability } from "@/lib/apartments";
 import { PhotoGallery } from "@/components/photo-gallery";
@@ -62,7 +62,6 @@ export default async function ApartmentDetailPage({
         href="/apartments"
         className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
       >
-        <ArrowLeft className="h-4 w-4" />
         {t("backToList")}
       </Link>
 
@@ -116,7 +115,7 @@ export default async function ApartmentDetailPage({
             <h2 className="text-2xl">{t("location")}</h2>
             <div className="mt-5 overflow-hidden rounded-2xl border border-border">
               <iframe
-                title={`${title} — map`}
+                title={`${title} map`}
                 src={mapSrc}
                 loading="lazy"
                 className="h-[320px] w-full"
