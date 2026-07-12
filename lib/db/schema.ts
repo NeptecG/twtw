@@ -35,6 +35,10 @@ export const apartments = pgTable("apartments", {
   lat: numeric("lat", { precision: 9, scale: 6 }),
   lng: numeric("lng", { precision: 9, scale: 6 }),
   seaView: boolean("sea_view").notNull().default(false),
+  // Review summary; shown as a star badge on cards. Null rating = no badge.
+  // Wired to a real review system later.
+  rating: numeric("rating", { precision: 2, scale: 1 }),
+  reviewCount: integer("review_count").notNull().default(0),
   published: boolean("published").notNull().default(true),
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow().notNull(),

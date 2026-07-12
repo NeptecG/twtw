@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { Waves, Users, BedDouble } from "lucide-react";
+import { Waves, Users, BedDouble, Star } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import type { Apartment } from "@/lib/db/schema";
 import type { Locale } from "@/i18n/routing";
@@ -40,6 +40,12 @@ export function ApartmentCard({
           <span className="absolute left-3 top-3 inline-flex items-center gap-1 rounded-full bg-sea/90 px-2.5 py-1 text-xs font-semibold text-sea-foreground backdrop-blur">
             <Waves className="h-3.5 w-3.5" />
             {t("seaView")}
+          </span>
+        )}
+        {apartment.rating && (
+          <span className="absolute right-3 top-3 inline-flex items-center gap-1 rounded-full bg-card/90 px-2.5 py-1 text-xs font-semibold text-ink backdrop-blur [font-variant-numeric:tabular-nums]">
+            <Star className="h-3.5 w-3.5 fill-terracotta text-terracotta" />
+            {Number(apartment.rating).toFixed(1)}
           </span>
         )}
       </div>
