@@ -65,15 +65,9 @@ export default async function HomePage({
           >
             <Link
               href="/apartments"
-              className="inline-flex items-center gap-2 rounded-full bg-terracotta px-7 py-3.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-[#379e86]"
+              className="inline-flex items-center gap-2 rounded-full bg-terracotta px-8 py-3.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-[#379e86]"
             >
               {t("cta")}
-            </Link>
-            <Link
-              href="/about"
-              className="inline-flex items-center gap-2 rounded-full border border-[#e6f3de]/40 px-7 py-3.5 text-sm font-semibold text-[#e6f3de] transition-colors hover:bg-[#e6f3de]/10"
-            >
-              {t("secondaryCta")}
             </Link>
           </div>
         </div>
@@ -81,17 +75,11 @@ export default async function HomePage({
 
       {/* Featured */}
       <section className="container-page py-20 sm:py-28">
-        <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
-          <div className="max-w-2xl">
-            <p className="eyebrow">{t("featured")}</p>
-            <h2 className="mt-3 text-3xl leading-tight sm:text-4xl">{t("featuredSubtitle")}</h2>
-          </div>
-          <Link
-            href="/apartments"
-            className="group inline-flex items-center gap-2 text-sm font-semibold text-sea"
-          >
-            {t("viewAll")}
-          </Link>
+        <div className="max-w-2xl">
+          <h2 className="text-3xl leading-tight sm:text-4xl">{t("featured")}</h2>
+          <p className="mt-3 text-base leading-relaxed text-muted-foreground">
+            {t("featuredSubtitle")}
+          </p>
         </div>
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -109,8 +97,8 @@ export default async function HomePage({
       {/* Why stay */}
       <section className="bg-secondary/50">
         <div className="container-page py-20 sm:py-24">
-          <p className="eyebrow">{t("whyTitle")}</p>
-          <div className="mt-10 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
+          <h2 className="max-w-2xl text-3xl leading-tight sm:text-4xl">{t("whyTitle")}</h2>
+          <div className="mt-12 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
             {WHY.map(({ icon: Icon, key }) => (
               <div key={key}>
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-sea/10 text-sea">
@@ -139,8 +127,7 @@ export default async function HomePage({
             />
           </div>
           <div className="lg:pl-6">
-            <p className="eyebrow">{t("heroKicker")}</p>
-            <h2 className="mt-3 text-3xl leading-tight sm:text-4xl">{t("locationTitle")}</h2>
+            <h2 className="text-3xl leading-tight sm:text-4xl">{t("locationTitle")}</h2>
             <p className="mt-5 max-w-lg text-base leading-relaxed text-muted-foreground">
               {t("locationText")}
             </p>

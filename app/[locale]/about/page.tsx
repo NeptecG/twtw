@@ -38,7 +38,6 @@ export default async function AboutPage({
       <section className="container-page py-14 sm:py-20">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <div>
-            <p className="eyebrow">Naupaktos · Greece</p>
             <h1 className="mt-3 text-4xl leading-tight sm:text-5xl">{t("title")}</h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
               {t("intro")}

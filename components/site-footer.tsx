@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 
@@ -16,9 +17,16 @@ export function SiteFooter() {
     <footer className="mt-24 bg-sea text-sea-foreground">
       <div className="container-wide grid gap-10 py-16 sm:grid-cols-2 lg:grid-cols-4">
         <div className="lg:col-span-2">
-          <div className="flex items-baseline gap-1.5">
-            <span className="font-display text-3xl font-semibold tracking-tight">TWTW</span>
-            <span className="h-1.5 w-1.5 rounded-full bg-terracotta" />
+          <div className="flex items-center gap-3">
+            <Image src="/logo-mark.png" alt="" width={44} height={44} className="h-11 w-11" />
+            <div className="flex flex-col">
+              <span className="font-display text-3xl font-semibold leading-none tracking-tight">
+                Ether
+              </span>
+              <span className="mt-1 font-display text-sm italic text-sea-foreground/70">
+                {t("footer.motto")}
+              </span>
+            </div>
           </div>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-sea-foreground/70">
             {t("footer.tagline")}
@@ -58,10 +66,10 @@ export function SiteFooter() {
             </li>
             <li>
               <a
-                href="mailto:hello@twtw-naupaktos.gr"
+                href="mailto:hello@ether-naupaktos.gr"
                 className="transition-colors hover:text-sea-foreground"
               >
-                hello@twtw-naupaktos.gr
+                hello@ether-naupaktos.gr
               </a>
             </li>
           </ul>

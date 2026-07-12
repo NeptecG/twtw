@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { Waves, Users } from "lucide-react";
+import { Waves, Users, BedDouble } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import type { Apartment } from "@/lib/db/schema";
 import type { Locale } from "@/i18n/routing";
@@ -48,11 +48,16 @@ export function ApartmentCard({
         <div className="flex items-start justify-between gap-3">
           <h3 className="font-display text-xl leading-snug text-ink">{title}</h3>
         </div>
-        <p className="mt-1 text-sm text-muted-foreground">{apartment.areaLabel}</p>
 
-        <div className="mt-3 flex items-center gap-1.5 text-sm text-muted-foreground">
-          <Users className="h-4 w-4" />
-          <span>{t("guestsLabel", { count: apartment.capacity })}</span>
+        <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-sm text-muted-foreground">
+          <span className="inline-flex items-center gap-1.5">
+            <Users className="h-4 w-4" />
+            {t("guestsLabel", { count: apartment.capacity })}
+          </span>
+          <span className="inline-flex items-center gap-1.5">
+            <BedDouble className="h-4 w-4" />
+            {t("bedrooms", { count: apartment.bedrooms })}
+          </span>
         </div>
 
         <div className="mt-auto flex items-baseline gap-1 pt-5">

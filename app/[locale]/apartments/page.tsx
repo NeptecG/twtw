@@ -53,7 +53,6 @@ export default async function ApartmentsPage({
 
   return (
     <section className="container-page py-14 sm:py-20">
-      <p className="eyebrow">Naupaktos · Greece</p>
       <h1 className="mt-3 text-4xl leading-tight sm:text-5xl">{tNav("apartments")}</h1>
       <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground">
         {tMeta("defaultDescription")}

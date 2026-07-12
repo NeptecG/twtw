@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 
-const OWNER_EMAIL = "hello@twtw-naupaktos.gr";
+const OWNER_EMAIL = "hello@ether-naupaktos.gr";
 
 export function ContactForm() {
   const t = useTranslations("contact");

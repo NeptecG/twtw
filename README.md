@@ -1,4 +1,4 @@
-# TWTW Naupaktos
+# Ether Naupaktos
 
 Bilingual (Greek/English) holiday-rental website for apartments in Naupaktos,
 Greece. Guests browse apartments, check live availability, and send a

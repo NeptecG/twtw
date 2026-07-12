@@ -1,4 +1,4 @@
-# TWTW Naupaktos - Setup Guide
+# Ether Naupaktos - Setup Guide
 
 This is the Phase 1 public booking site: bilingual (Greek/English) apartment
 listings with a live availability calendar and a request-to-book flow that

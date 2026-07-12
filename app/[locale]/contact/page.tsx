@@ -24,13 +24,12 @@ export default async function ContactPage({
 
   const details = [
     { icon: Phone, label: t("phone"), value: "+30 26340 00000", href: "tel:+302634000000" },
-    { icon: Mail, label: t("email"), value: "hello@twtw-naupaktos.gr", href: "mailto:hello@twtw-naupaktos.gr" },
+    { icon: Mail, label: t("email"), value: "hello@ether-naupaktos.gr", href: "mailto:hello@ether-naupaktos.gr" },
     { icon: MapPin, label: t("address"), value: "Naupaktos 303 00, Greece", href: undefined },
   ];
 
   return (
     <section className="container-page py-14 sm:py-20">
-      <p className="eyebrow">Naupaktos · Greece</p>
       <h1 className="mt-3 text-4xl leading-tight sm:text-5xl">{t("title")}</h1>
       <p className="mt-4 max-w-xl text-lg leading-relaxed text-muted-foreground">{t("intro")}</p>
 

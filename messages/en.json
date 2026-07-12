@@ -1,6 +1,6 @@
 {
   "meta": {
-    "siteName": "TWTW Naupaktos",
+    "siteName": "Ether Naupaktos",
     "defaultDescription": "A small apartment complex in Naupaktos, Greece, by the Venetian harbour and a few steps from the sea, the old town and the beach. Every apartment in one building."
   },
   "nav": {
@@ -11,10 +11,10 @@
     "bookNow": "Book a stay"
   },
   "home": {
-    "heroKicker": "Naupaktos · Greece",
+    "heroKicker": "Breath in Tranquility",
     "heroTitle": "Stay by the Venetian harbour",
     "heroSubtitle": "A small apartment complex in the heart of Naupaktos, a few steps from the sea, the old town and the beach.",
-    "cta": "Browse apartments",
+    "cta": "Book a stay",
     "secondaryCta": "The area",
     "featured": "Our apartments",
     "featuredSubtitle": "Every apartment in the complex, each with its own character.",
@@ -127,6 +127,7 @@
     "orEmail": "Or email us directly at"
   },
   "footer": {
+    "motto": "Breath in Tranquility",
     "tagline": "A small apartment complex in Naupaktos.",
     "quickLinks": "Explore",
     "contact": "Contact",

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Menu, X } from "lucide-react";
 import { Link, usePathname } from "@/i18n/navigation";
@@ -29,15 +30,23 @@ export function SiteHeader() {
       <div className="container-wide flex h-16 items-center justify-between gap-4 sm:h-20">
         <Link
           href="/"
-          className="group flex items-baseline gap-1.5"
+          className="group flex items-center gap-2.5"
           onClick={() => setOpen(false)}
         >
-          <span className="font-display text-2xl font-semibold leading-none tracking-tight text-ink">
-            TWTW
-          </span>
-          <span className="h-1.5 w-1.5 rounded-full bg-terracotta transition-transform group-hover:scale-125" />
-          <span className="hidden text-[0.65rem] font-semibold uppercase tracking-[0.25em] text-muted-foreground sm:inline">
-            Naupaktos
+          <Image
+            src="/logo-mark.png"
+            alt=""
+            width={36}
+            height={36}
+            className="h-9 w-9 transition-transform duration-500 ease-out group-hover:rotate-[12deg]"
+          />
+          <span className="flex flex-col leading-none">
+            <span className="font-display text-2xl font-semibold tracking-tight text-ink">
+              Ether
+            </span>
+            <span className="hidden text-[0.58rem] font-semibold uppercase tracking-[0.25em] text-muted-foreground sm:block">
+              Naupaktos
+            </span>
           </span>
         </Link>
 
