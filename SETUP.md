@@ -87,6 +87,30 @@ Until the Phase 2 admin dashboard is built, the content lives in
 photo URLs there, then run `npm run db:seed` again to reload the database
 (or just redeploy if running in offline mode).
 
+## Changing the photos
+
+Each apartment's `photos` list in `lib/placeholder-data.ts` accepts two kinds
+of entries, and you can mix them freely:
+
+1. **Your own image files (recommended).** Copy the files into
+   `public/apartments/` and reference them with a leading slash:
+
+   ```ts
+   photos: ["/apartments/pnoe-1.jpg", "/apartments/pnoe-2.jpg"],
+   ```
+
+   File names: lowercase, no spaces (use hyphens), `.jpg`/`.png`/`.webp`.
+
+2. **Any https image URL** from the web:
+
+   ```ts
+   photos: ["https://example.com/some-photo.jpg"],
+   ```
+
+After changing photos, restart the dev server (or rebuild) to see them. If an
+image does not appear, the usual cause is a typo in the file name or a file
+that is not actually inside `public/apartments/`.
+
 Phase 2 will add a private admin login where the owner manages apartments,
 availability and booking requests without touching code.
 

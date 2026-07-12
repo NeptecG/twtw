@@ -5,10 +5,10 @@ const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
 
 const nextConfig: NextConfig = {
   images: {
-    remotePatterns: [
-      { protocol: "https", hostname: "**.supabase.co" },
-      { protocol: "https", hostname: "images.unsplash.com" },
-    ],
+    // Owner pastes photo URLs from anywhere; a strict host whitelist made the
+    // page crash on unknown hosts. Any https image is accepted (and local
+    // files under /public always work).
+    remotePatterns: [{ protocol: "https", hostname: "**" }],
   },
 };
 
