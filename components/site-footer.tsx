@@ -23,21 +23,21 @@ export function SiteFooter() {
               <span className="font-display text-3xl font-semibold leading-none tracking-tight">
                 Ether
               </span>
-              <span className="mt-1 font-display text-sm italic text-sea-foreground/70">
+              <span className="mt-1 font-display text-sm italic text-sea-foreground/90">
                 {t("footer.motto")}
               </span>
             </div>
           </div>
-          <p className="mt-4 max-w-sm text-sm leading-relaxed text-sea-foreground/70">
+          <p className="mt-4 max-w-sm text-sm leading-relaxed text-sea-foreground/90">
             {t("footer.tagline")}
           </p>
-          <p className="mt-6 text-xs uppercase tracking-[0.25em] text-sea-foreground/50">
+          <p className="mt-6 text-xs uppercase tracking-[0.25em] text-sea-foreground/80">
             {t("contact.address")}
           </p>
         </div>
 
         <div>
-          <h3 className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-sea-foreground/70">
+          <h3 className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-sea-foreground/90">
             {t("footer.quickLinks")}
           </h3>
           <ul className="mt-4 space-y-2.5 text-sm">
@@ -45,7 +45,7 @@ export function SiteFooter() {
               <li key={item.key}>
                 <Link
                   href={item.href}
-                  className="text-sea-foreground/80 transition-colors hover:text-sea-foreground"
+                  className="text-sea-foreground/95 transition-colors hover:text-sea-foreground"
                 >
                   {t(item.key)}
                 </Link>
@@ -55,10 +55,10 @@ export function SiteFooter() {
         </div>
 
         <div>
-          <h3 className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-sea-foreground/70">
+          <h3 className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-sea-foreground/90">
             {t("footer.contact")}
           </h3>
-          <ul className="mt-4 space-y-2.5 text-sm text-sea-foreground/80">
+          <ul className="mt-4 space-y-2.5 text-sm text-sea-foreground/95">
             <li>
               <a href="tel:+302634000000" className="transition-colors hover:text-sea-foreground">
                 +30 26340 00000
@@ -77,9 +77,9 @@ export function SiteFooter() {
       </div>
 
       <div className="border-t border-sea-foreground/15">
-        <div className="container-wide flex flex-col items-center justify-between gap-2 py-6 text-xs text-sea-foreground/50 sm:flex-row">
+        <div className="container-wide flex flex-col items-center justify-between gap-2 py-6 text-xs text-sea-foreground/80 sm:flex-row">
           <span>
-            © {year} TWTW Naupaktos. {t("footer.rights")}
+            © {year} Ether Naupaktos. {t("footer.rights")}
           </span>
           <span>Naupaktos · Greece</span>
         </div>

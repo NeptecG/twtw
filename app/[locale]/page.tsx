@@ -39,8 +39,8 @@ export default async function HomePage({
           <div className="absolute inset-0 bg-gradient-to-b from-ink/70 via-ink/40 to-ink/75" />
         </div>
 
-        <div className="container-wide flex min-h-[86vh] flex-col justify-end pb-20 pt-32 text-[#e6f3de]">
-          <p className="eyebrow animate-fade-up text-[#e6f3de]/80">{t("heroKicker")}</p>
+        <div className="container-wide flex min-h-[86vh] flex-col justify-end pb-20 pt-32 text-[#f2f9ec]">
+          <p className="eyebrow animate-fade-up text-[#f2f9ec]/80">{t("heroKicker")}</p>
           <h1
             className="animate-fade-up mt-4 max-w-4xl text-5xl font-medium leading-[1.02] tracking-tight sm:text-6xl md:text-7xl"
             style={{ animationDelay: "80ms" }}
@@ -48,7 +48,7 @@ export default async function HomePage({
             {t("heroTitle")}
           </h1>
           <p
-            className="animate-fade-up mt-6 max-w-xl text-lg leading-relaxed text-[#e6f3de]/85"
+            className="animate-fade-up mt-6 max-w-xl text-lg leading-relaxed text-[#f2f9ec]/85"
             style={{ animationDelay: "160ms" }}
           >
             {t("heroSubtitle")}
@@ -136,7 +136,7 @@ export default async function HomePage({
       <section className="container-wide">
         <div className="relative overflow-hidden rounded-[2rem] bg-sea px-6 py-16 text-center text-sea-foreground sm:px-16 sm:py-20">
           <h2 className="mx-auto max-w-2xl text-3xl sm:text-4xl">{t("contactCtaTitle")}</h2>
-          <p className="mx-auto mt-4 max-w-xl text-sea-foreground/80">{t("contactCtaText")}</p>
+          <p className="mx-auto mt-4 max-w-xl text-sea-foreground/90">{t("contactCtaText")}</p>
           <Link
             href="/contact"
             className="mt-8 inline-flex items-center gap-2 rounded-full bg-terracotta px-7 py-3.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-[#379e86]"
