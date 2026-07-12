@@ -45,13 +45,22 @@ export default async function LocaleLayout({
     notFound();
   }
   setRequestLocale(locale);
+  const t = await getTranslations("nav");
 
   return (
     <html lang={locale} className={`${display.variable} ${sans.variable}`}>
       <body className="flex min-h-dvh flex-col">
         <NextIntlClientProvider>
+          <a
+            href="#main"
+            className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-sea focus:px-5 focus:py-2.5 focus:text-sm focus:font-semibold focus:text-sea-foreground"
+          >
+            {t("skipToContent")}
+          </a>
           <SiteHeader />
-          <main className="flex-1">{children}</main>
+          <main id="main" className="flex-1">
+            {children}
+          </main>
           <SiteFooter />
           <Toaster
             position="top-center"

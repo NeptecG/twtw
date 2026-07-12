@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { setRequestLocale, getTranslations } from "next-intl/server";
-import { Waves, Heart, CalendarCheck, Sparkles } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import { listApartments } from "@/lib/apartments";
 import { ApartmentCard } from "@/components/apartment-card";
@@ -11,12 +10,7 @@ const HERO_IMAGE =
 const LOCATION_IMAGE =
   "https://images.unsplash.com/photo-1602343168117-bb8ffe3e2e9f?auto=format&fit=crop&w=1200&q=80";
 
-const WHY = [
-  { icon: Waves, key: 1 },
-  { icon: Heart, key: 2 },
-  { icon: CalendarCheck, key: 3 },
-  { icon: Sparkles, key: 4 },
-] as const;
+const WHY = [1, 2, 3, 4] as const;
 
 export default async function HomePage({
   params,
@@ -98,14 +92,11 @@ export default async function HomePage({
       <section className="bg-secondary/50">
         <div className="container-page py-20 sm:py-24">
           <h2 className="max-w-2xl text-3xl leading-tight sm:text-4xl">{t("whyTitle")}</h2>
-          <div className="mt-12 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
-            {WHY.map(({ icon: Icon, key }) => (
-              <div key={key}>
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-sea/10 text-sea">
-                  <Icon className="h-6 w-6" />
-                </div>
-                <h3 className="mt-5 text-xl">{t(`why${key}Title`)}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+          <div className="mt-12 grid gap-x-12 gap-y-10 sm:grid-cols-2">
+            {WHY.map((key) => (
+              <div key={key} className="border-t border-sea/25 pt-6">
+                <h3 className="font-display text-2xl">{t(`why${key}Title`)}</h3>
+                <p className="mt-2 max-w-md text-sm leading-relaxed text-muted-foreground">
                   {t(`why${key}Text`)}
                 </p>
               </div>

@@ -30,7 +30,7 @@ export default async function ContactPage({
 
   return (
     <section className="container-page py-14 sm:py-20">
-      <h1 className="mt-3 text-4xl leading-tight sm:text-5xl">{t("title")}</h1>
+      <h1 className="text-4xl leading-tight sm:text-5xl">{t("title")}</h1>
       <p className="mt-4 max-w-xl text-lg leading-relaxed text-muted-foreground">{t("intro")}</p>
 
       <div className="mt-12 grid gap-12 lg:grid-cols-2">

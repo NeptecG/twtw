@@ -4,6 +4,7 @@
     "defaultDescription": "A small apartment complex in Naupaktos, Greece, by the Venetian harbour and a few steps from the sea, the old town and the beach. Every apartment in one building."
   },
   "nav": {
+    "skipToContent": "Skip to content",
     "home": "Home",
     "apartments": "Apartments",
     "about": "The Area",
@@ -26,7 +27,7 @@
     "why2Text": "Cared for by people who live here and answer fast.",
     "why3Title": "Simple booking",
     "why3Text": "Check the calendar, send a request, get a personal reply.",
-    "why4Title": "Honest comfort",
+    "why4Title": "Real comfort",
     "why4Text": "Clean, well-equipped spaces with everything you need.",
     "locationTitle": "A town between mountain and sea",
     "locationText": "Naupaktos wraps a tiny Venetian port in stone walls, with a fortress above and beaches on either side. Tavernas, cafes and history are all within walking distance.",

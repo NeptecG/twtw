@@ -14,7 +14,7 @@ export async function generateMetadata({
 }
 
 const AREA_IMAGE =
-  "https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=1600&q=80";
+  "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80";
 
 const THINGS = [
   { icon: Anchor, key: 1 },
@@ -38,7 +38,7 @@ export default async function AboutPage({
       <section className="container-page py-14 sm:py-20">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <div>
-            <h1 className="mt-3 text-4xl leading-tight sm:text-5xl">{t("title")}</h1>
+            <h1 className="text-4xl leading-tight sm:text-5xl">{t("title")}</h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
               {t("intro")}
             </p>
@@ -62,16 +62,14 @@ export default async function AboutPage({
           <h2 className="text-3xl sm:text-4xl">{t("thingsToDoTitle")}</h2>
           <div className="mt-12 grid gap-x-8 gap-y-12 sm:grid-cols-2">
             {THINGS.map(({ icon: Icon, key }) => (
-              <div key={key} className="flex gap-5">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-sea/10 text-sea">
-                  <Icon className="h-6 w-6" />
-                </div>
-                <div>
-                  <h3 className="text-xl">{t(`thing${key}Title`)}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                    {t(`thing${key}Text`)}
-                  </p>
-                </div>
+              <div key={key} className="border-t border-sea/25 pt-6">
+                <h3 className="flex items-center gap-2.5 font-display text-2xl">
+                  <Icon className="h-5 w-5 text-sea" aria-hidden />
+                  {t(`thing${key}Title`)}
+                </h3>
+                <p className="mt-2 max-w-md text-sm leading-relaxed text-muted-foreground">
+                  {t(`thing${key}Text`)}
+                </p>
               </div>
             ))}
           </div>
