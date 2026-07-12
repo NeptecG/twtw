@@ -7,6 +7,7 @@ import { getApartmentBySlug, getApartmentAvailability } from "@/lib/apartments";
 import { PhotoGallery } from "@/components/photo-gallery";
 import { AmenityList } from "@/components/amenity-list";
 import { BookingRequestForm } from "@/components/booking-request-form";
+import { LocationMap } from "@/components/location-map";
 import type { Locale } from "@/i18n/routing";
 
 export async function generateMetadata({
@@ -44,8 +45,6 @@ export default async function ApartmentDetailPage({
 
   const lat = Number(apartment.lat ?? 38.393);
   const lng = Number(apartment.lng ?? 21.828);
-  const d = 0.008;
-  const mapSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${lng - d}%2C${lat - d}%2C${lng + d}%2C${lat + d}&layer=mapnik&marker=${lat}%2C${lng}`;
 
   const facts = [
     { icon: Users, label: t("guestsLabel", { count: apartment.capacity }) },
@@ -113,13 +112,8 @@ export default async function ApartmentDetailPage({
 
           <section className="mt-10">
             <h2 className="text-2xl">{t("location")}</h2>
-            <div className="mt-5 overflow-hidden rounded-2xl border border-border">
-              <iframe
-                title={`${title} map`}
-                src={mapSrc}
-                loading="lazy"
-                className="h-[320px] w-full"
-              />
+            <div className="mt-5">
+              <LocationMap lat={lat} lng={lng} locale={locale} title={`${title} map`} />
             </div>
           </section>
         </div>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { Phone, Mail, MapPin } from "lucide-react";
 import { ContactForm } from "@/components/contact-form";
+import { LocationMap } from "@/components/location-map";
 
 export async function generateMetadata({
   params,
@@ -64,14 +65,7 @@ export default async function ContactPage({
             ))}
           </ul>
 
-          <div className="overflow-hidden rounded-3xl border border-border">
-            <iframe
-              title="Naupaktos map"
-              src="https://www.openstreetmap.org/export/embed.html?bbox=21.808%2C38.383%2C21.848%2C38.403&layer=mapnik&marker=38.393%2C21.828"
-              loading="lazy"
-              className="h-[300px] w-full"
-            />
-          </div>
+          <LocationMap locale={locale} title="Naupaktos map" className="h-[300px] rounded-3xl" />
         </div>
       </div>
     </section>

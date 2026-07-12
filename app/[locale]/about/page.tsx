@@ -2,6 +2,7 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { Anchor, Castle, Umbrella, Mountain } from "lucide-react";
+import { LocationMap } from "@/components/location-map";
 
 export async function generateMetadata({
   params,
@@ -79,13 +80,8 @@ export default async function AboutPage({
       {/* Map */}
       <section className="container-page py-16 sm:py-20">
         <h2 className="text-2xl">{t("mapTitle")}</h2>
-        <div className="mt-5 overflow-hidden rounded-3xl border border-border">
-          <iframe
-            title="Naupaktos map"
-            src="https://www.openstreetmap.org/export/embed.html?bbox=21.808%2C38.383%2C21.848%2C38.403&layer=mapnik&marker=38.393%2C21.828"
-            loading="lazy"
-            className="h-[380px] w-full"
-          />
+        <div className="mt-5">
+          <LocationMap locale={locale} title="Naupaktos map" className="h-[380px] rounded-3xl" />
         </div>
       </section>
     </div>
