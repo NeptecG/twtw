@@ -34,4 +34,13 @@ describe("bookingRequestSchema", () => {
     void message;
     expect(bookingRequestSchema.safeParse(rest).success).toBe(true);
   });
+  it("rejects a phone containing letters", () => {
+    expect(bookingRequestSchema.safeParse({ ...valid, guestPhone: "69abc12345" }).success).toBe(false);
+  });
+  it("accepts a phone with spaces and leading plus", () => {
+    expect(bookingRequestSchema.safeParse({ ...valid, guestPhone: "+30 690 000 0000" }).success).toBe(true);
+  });
+  it("rejects a phone longer than 17 characters", () => {
+    expect(bookingRequestSchema.safeParse({ ...valid, guestPhone: "+30 690 000 00000 000" }).success).toBe(false);
+  });
 });

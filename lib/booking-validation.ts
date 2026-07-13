@@ -10,7 +10,12 @@ export const bookingRequestSchema = z
     guests: z.number().int().min(1).max(30),
     guestName: z.string().trim().min(1).max(120),
     guestEmail: z.email(),
-    guestPhone: z.string().trim().max(40).optional(),
+    // Digits and spaces only, optional leading +, 6-17 characters total.
+    guestPhone: z
+      .string()
+      .trim()
+      .regex(/^\+?[0-9][0-9 ]{4,15}[0-9]$/, "Invalid phone")
+      .optional(),
     message: z.string().trim().max(2000).optional(),
   })
   .refine((v) => new Date(v.checkOut) > new Date(v.checkIn), {

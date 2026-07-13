@@ -177,8 +177,15 @@ export function BookingRequestForm({
           <Input
             id="phone"
             type="tel"
+            inputMode="tel"
+            maxLength={17}
             value={phone}
-            onChange={(e) => setPhone(e.target.value)}
+            onChange={(e) =>
+              // digits, spaces and one leading + only, 17 chars max (same rule as the server)
+              setPhone(
+                e.target.value.replace(/[^\d+ ]/g, "").replace(/(?!^)\+/g, "").slice(0, 17),
+              )
+            }
             autoComplete="tel"
           />
         </div>
