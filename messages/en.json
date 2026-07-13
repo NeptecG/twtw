@@ -122,6 +122,8 @@
     "phone": "Phone",
     "email": "Email",
     "address": "Naupaktos, Greece",
+    "copy": "Copy",
+    "copied": "Copied!",
     "name": "Your name",
     "message": "Your message",
     "send": "Send message",

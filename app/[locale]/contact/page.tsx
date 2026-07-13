@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { Phone, Mail, MapPin } from "lucide-react";
 import { ContactForm } from "@/components/contact-form";
+import { ContactLink } from "@/components/contact-link";
 import { LocationMap } from "@/components/location-map";
 
 export async function generateMetadata({
@@ -24,9 +25,9 @@ export default async function ContactPage({
   const t = await getTranslations("contact");
 
   const details = [
-    { icon: Phone, label: t("phone"), value: "+30 26340 00000", href: "tel:+302634000000" },
-    { icon: Mail, label: t("email"), value: "hello@ether-naupaktos.gr", href: "mailto:hello@ether-naupaktos.gr" },
-    { icon: MapPin, label: t("address"), value: "Naupaktos 303 00, Greece", href: undefined },
+    { icon: Phone, kind: "phone" as const, label: t("phone"), value: "+30 26340 00000", href: "tel:+302634000000" },
+    { icon: Mail, kind: "email" as const, label: t("email"), value: "hello@ether-naupaktos.gr", href: "mailto:hello@ether-naupaktos.gr" },
+    { icon: MapPin, kind: undefined, label: t("address"), value: "Naupaktos 303 00, Greece", href: undefined },
   ];
 
   return (
@@ -50,13 +51,15 @@ export default async function ContactPage({
                   <p className="text-xs uppercase tracking-[0.15em] text-muted-foreground">
                     {d.label}
                   </p>
-                  {d.href ? (
-                    <a
+                  {d.href && d.kind ? (
+                    <ContactLink
+                      kind={d.kind}
+                      value={d.value}
                       href={d.href}
                       className="text-lg text-foreground transition-colors hover:text-sea"
                     >
                       {d.value}
-                    </a>
+                    </ContactLink>
                   ) : (
                     <p className="text-lg text-foreground">{d.value}</p>
                   )}

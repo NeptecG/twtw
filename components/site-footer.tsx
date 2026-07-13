@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import { ContactLink } from "@/components/contact-link";
 
 const NAV = [
   { key: "nav.home", href: "/" },
@@ -60,17 +61,24 @@ export function SiteFooter() {
           </h3>
           <ul className="mt-4 space-y-2.5 text-sm text-sea-foreground/95">
             <li>
-              <a href="tel:+302634000000" className="transition-colors hover:text-sea-foreground">
+              <ContactLink
+                kind="phone"
+                value="+30 26340 00000"
+                href="tel:+302634000000"
+                className="transition-colors hover:text-sea-foreground"
+              >
                 +30 26340 00000
-              </a>
+              </ContactLink>
             </li>
             <li>
-              <a
+              <ContactLink
+                kind="email"
+                value="hello@ether-naupaktos.gr"
                 href="mailto:hello@ether-naupaktos.gr"
                 className="transition-colors hover:text-sea-foreground"
               >
                 hello@ether-naupaktos.gr
-              </a>
+              </ContactLink>
             </li>
           </ul>
         </div>
