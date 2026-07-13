@@ -20,6 +20,7 @@ export default async function HomePage({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("home");
+  const tR = await getTranslations("reviews");
   const apartments = await listApartments();
   const featured = apartments.slice(0, 6);
 
@@ -128,6 +129,35 @@ export default async function HomePage({
             >
               {t("secondaryCta")}
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Guest reviews */}
+      <section className="bg-secondary/50">
+        <div className="container-page py-20 sm:py-24">
+          <h2 className="max-w-2xl text-3xl leading-tight sm:text-4xl">{tR("title")}</h2>
+          <div className="mt-12 grid gap-10 lg:grid-cols-[3fr_2fr] lg:gap-16">
+            <figure className="flex flex-col justify-center">
+              <blockquote className="font-display text-2xl leading-snug text-ink sm:text-3xl">
+                {tR("q1Text")}
+              </blockquote>
+              <figcaption className="mt-5 text-sm text-muted-foreground">
+                <span className="font-semibold text-foreground">{tR("q1Name")}</span>, {tR("q1Origin")}
+              </figcaption>
+            </figure>
+            <div className="flex flex-col gap-10 lg:border-l lg:border-sea/25 lg:pl-10">
+              {([2, 3] as const).map((i) => (
+                <figure key={i}>
+                  <blockquote className="text-base leading-relaxed text-foreground">
+                    {tR(`q${i}Text`)}
+                  </blockquote>
+                  <figcaption className="mt-3 text-sm text-muted-foreground">
+                    <span className="font-semibold text-foreground">{tR(`q${i}Name`)}</span>, {tR(`q${i}Origin`)}
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
           </div>
         </div>
       </section>

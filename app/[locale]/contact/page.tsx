@@ -3,7 +3,10 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import { Phone, Mail, MapPin } from "lucide-react";
 import { ContactForm } from "@/components/contact-form";
 import { ContactLink } from "@/components/contact-link";
+import { BrandIcon } from "@/components/brand-icon";
 import { LocationMap } from "@/components/location-map";
+
+const PHONE_INTL = "302634000000";
 
 export async function generateMetadata({
   params,
@@ -66,6 +69,41 @@ export default async function ContactPage({
                 </div>
               </li>
             ))}
+            <li className="flex items-start gap-4">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-sea/10 text-sea">
+                <BrandIcon name="whatsapp" className="h-5 w-5" />
+              </div>
+              <div>
+                <p className="text-xs uppercase tracking-[0.15em] text-muted-foreground">
+                  WhatsApp
+                </p>
+                <a
+                  href={`https://wa.me/${PHONE_INTL}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-lg text-foreground transition-colors hover:text-sea"
+                >
+                  +30 26340 00000
+                </a>
+              </div>
+            </li>
+            <li className="flex items-start gap-4">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-sea/10 text-sea">
+                <BrandIcon name="viber" className="h-5 w-5" />
+              </div>
+              <div>
+                <p className="text-xs uppercase tracking-[0.15em] text-muted-foreground">Viber</p>
+                <ContactLink
+                  kind="phone"
+                  label="Viber"
+                  value="+30 26340 00000"
+                  href={`viber://chat?number=%2B${PHONE_INTL}`}
+                  className="text-lg text-foreground transition-colors hover:text-sea"
+                >
+                  +30 26340 00000
+                </ContactLink>
+              </div>
+            </li>
           </ul>
 
           <LocationMap locale={locale} title="Naupaktos map" className="h-[300px] rounded-3xl" />

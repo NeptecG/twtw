@@ -2,6 +2,10 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { ContactLink } from "@/components/contact-link";
+import { BrandIcon } from "@/components/brand-icon";
+
+const PHONE_DISPLAY = "+30 26340 00000";
+const PHONE_INTL = "302634000000";
 
 const NAV = [
   { key: "nav.home", href: "/" },
@@ -52,6 +56,14 @@ export function SiteFooter() {
                 </Link>
               </li>
             ))}
+            <li>
+              <Link
+                href="/faq"
+                className="text-sea-foreground/95 transition-colors hover:text-sea-foreground"
+              >
+                {t("footer.faq")}
+              </Link>
+            </li>
           </ul>
         </div>
 
@@ -63,11 +75,34 @@ export function SiteFooter() {
             <li>
               <ContactLink
                 kind="phone"
-                value="+30 26340 00000"
-                href="tel:+302634000000"
+                value={PHONE_DISPLAY}
+                href={`tel:+${PHONE_INTL}`}
                 className="transition-colors hover:text-sea-foreground"
               >
-                +30 26340 00000
+                {PHONE_DISPLAY}
+              </ContactLink>
+            </li>
+            <li>
+              <a
+                href={`https://wa.me/${PHONE_INTL}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 transition-colors hover:text-sea-foreground"
+              >
+                <BrandIcon name="whatsapp" />
+                WhatsApp
+              </a>
+            </li>
+            <li>
+              <ContactLink
+                kind="phone"
+                label="Viber"
+                value={PHONE_DISPLAY}
+                href={`viber://chat?number=%2B${PHONE_INTL}`}
+                className="inline-flex items-center gap-2 transition-colors hover:text-sea-foreground"
+              >
+                <BrandIcon name="viber" />
+                Viber
               </ContactLink>
             </li>
             <li>

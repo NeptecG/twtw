@@ -11,12 +11,15 @@ export function ContactLink({
   kind,
   value,
   href,
+  label,
   className,
   children,
 }: {
   kind: "phone" | "email";
   value: string;
   href: string;
+  /** Overrides the dialog heading (e.g. "Viber"); defaults to the kind label. */
+  label?: string;
   className?: string;
   children: React.ReactNode;
 }) {
@@ -72,7 +75,7 @@ export function ContactLink({
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className="max-w-sm rounded-3xl border-border bg-card p-8 text-center">
           <DialogTitle className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-            {kind === "phone" ? t("phone") : t("email")}
+            {label ?? (kind === "phone" ? t("phone") : t("email"))}
           </DialogTitle>
           <p className="font-display text-2xl text-ink break-all">{value}</p>
           <button

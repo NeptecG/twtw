@@ -1,7 +1,7 @@
 import Image from "next/image";
 import type { Metadata } from "next";
 import { setRequestLocale, getTranslations } from "next-intl/server";
-import { Anchor, Castle, Umbrella, Mountain } from "lucide-react";
+import { Anchor, Castle, Umbrella, UtensilsCrossed, Mountain, Sunset } from "lucide-react";
 import { LocationMap } from "@/components/location-map";
 
 export async function generateMetadata({
@@ -21,8 +21,12 @@ const THINGS = [
   { icon: Anchor, key: 1 },
   { icon: Castle, key: 2 },
   { icon: Umbrella, key: 3 },
-  { icon: Mountain, key: 4 },
+  { icon: UtensilsCrossed, key: 4 },
+  { icon: Mountain, key: 5 },
+  { icon: Sunset, key: 6 },
 ] as const;
+
+const DESTINATIONS = [1, 2, 3, 4] as const;
 
 export default async function AboutPage({
   params,
@@ -77,8 +81,24 @@ export default async function AboutPage({
         </div>
       </section>
 
-      {/* Map */}
+      {/* Getting here */}
       <section className="container-page py-16 sm:py-20">
+        <h2 className="text-3xl sm:text-4xl">{t("gettingHereTitle")}</h2>
+        <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground">
+          {t("gettingHereText")}
+        </p>
+        <div className="mt-10 grid grid-cols-2 gap-6 lg:grid-cols-4">
+          {DESTINATIONS.map((i) => (
+            <div key={i} className="rounded-2xl border border-border bg-card p-6">
+              <p className="font-display text-3xl text-sea">{t(`dest${i}Time`)}</p>
+              <p className="mt-2 text-sm text-muted-foreground">{t(`dest${i}Place`)}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Map */}
+      <section className="container-page pb-16 sm:pb-20">
         <h2 className="text-2xl">{t("mapTitle")}</h2>
         <div className="mt-5">
           <LocationMap locale={locale} title="Naupaktos map" className="h-[380px] rounded-3xl" />
