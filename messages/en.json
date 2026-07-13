@@ -158,7 +158,19 @@
     "q6": "Do you have equipment for babies and kids?",
     "a6": "A cot and a high chair are available on request, free of charge.",
     "q7": "Is smoking allowed?",
-    "a7": "Not indoors. You are welcome to smoke on the balconies and in the courtyard."
+    "a7": "Not indoors. You are welcome to smoke on the balconies and in the courtyard.",
+    "q8": "Is there Wi-Fi?",
+    "a8": "Yes, every apartment has free Wi-Fi. You will find the password inside the apartment and in your arrival instructions.",
+    "q9": "Are linens and towels provided?",
+    "a9": "Yes. Every apartment comes with fresh linens and towels and is fully cleaned before each arrival. For longer stays we change them on request.",
+    "q10": "We arrive late at night. Is that a problem?",
+    "a10": "Not at all. Tell us your arrival time and we will arrange the key handover, whatever time you get here.",
+    "q11": "What does the price include? Are there extra fees?",
+    "a11": "The nightly price includes linens, towels, cleaning, electricity, water and Wi-Fi. There are no hidden charges. The final amount is confirmed with your booking.",
+    "q12": "How many people does each apartment sleep?",
+    "a12": "Capacity and bedrooms are listed on each apartment. Mention your group size in the request. An extra bed or a cot is available by arrangement.",
+    "q13": "How far are you from the beach and the centre?",
+    "a13": "The complex is a few steps from the sea and within walking distance of the harbour and the old town. You will receive the exact address and directions with your booking confirmation."
   },
   "contact": {
     "title": "Contact us",
