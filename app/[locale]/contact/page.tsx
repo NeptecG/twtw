@@ -6,11 +6,12 @@ import { ContactLink } from "@/components/contact-link";
 import { ContactIcon } from "@/components/contact-icons";
 import { BrandIcon } from "@/components/brand-icon";
 import { LocationMap } from "@/components/location-map";
+import { phoneDisplay } from "@/lib/phone";
 
 // Placeholders: swap for the real numbers/profiles when the owner provides them.
-const PHONE_DISPLAY = "+30 26340 00000";
+const PHONE_LOCAL = "26340 00000";
 const PHONE_INTL = "302634000000";
-const MOBILE_DISPLAY = "+30 690 000 0000";
+const MOBILE_LOCAL = "690 000 0000";
 const MOBILE_INTL = "306900000000";
 const INSTAGRAM_URL = "https://www.instagram.com/ethernaupaktos";
 const FACEBOOK_URL = "https://www.facebook.com/ethernaupaktos";
@@ -37,10 +38,12 @@ export default async function ContactPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("contact");
+  const phoneDisp = phoneDisplay(PHONE_LOCAL, locale);
+  const mobileDisp = phoneDisplay(MOBILE_LOCAL, locale);
 
   const details = [
-    { iconName: "phone" as const, kind: "phone" as const, label: t("phone"), value: PHONE_DISPLAY, href: `tel:+${PHONE_INTL}` },
-    { iconName: "mobile" as const, kind: "phone" as const, label: t("mobile"), value: MOBILE_DISPLAY, href: `tel:+${MOBILE_INTL}` },
+    { iconName: "phone" as const, kind: "phone" as const, label: t("phone"), value: phoneDisp, href: `tel:+${PHONE_INTL}` },
+    { iconName: "mobile" as const, kind: "phone" as const, label: t("mobile"), value: mobileDisp, href: `tel:+${MOBILE_INTL}` },
     { iconName: "email" as const, kind: "email" as const, label: t("email"), value: "hello@ether-naupaktos.gr", href: "mailto:hello@ether-naupaktos.gr" },
   ];
 
@@ -121,7 +124,7 @@ export default async function ContactPage({
               kind="phone"
               label="Viber"
               ariaLabel="Viber"
-              value={PHONE_DISPLAY}
+              value={phoneDisp}
               href={`viber://chat?number=%2B${PHONE_INTL}`}
               className={SOCIAL_CHIP}
             >

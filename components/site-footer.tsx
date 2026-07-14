@@ -1,14 +1,15 @@
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { ContactLink } from "@/components/contact-link";
 import { ContactIcon } from "@/components/contact-icons";
 import { BrandIcon } from "@/components/brand-icon";
+import { phoneDisplay } from "@/lib/phone";
 
 // Placeholders: swap for the real numbers/profiles when the owner provides them.
-const PHONE_DISPLAY = "+30 26340 00000";
+const PHONE_LOCAL = "26340 00000";
 const PHONE_INTL = "302634000000";
-const MOBILE_DISPLAY = "+30 690 000 0000";
+const MOBILE_LOCAL = "690 000 0000";
 const MOBILE_INTL = "306900000000";
 const INSTAGRAM_URL = "https://www.instagram.com/ethernaupaktos";
 const FACEBOOK_URL = "https://www.facebook.com/ethernaupaktos";
@@ -26,7 +27,10 @@ const NAV = [
 
 export function SiteFooter() {
   const t = useTranslations();
+  const locale = useLocale();
   const year = new Date().getFullYear();
+  const phoneDisp = phoneDisplay(PHONE_LOCAL, locale);
+  const mobileDisp = phoneDisplay(MOBILE_LOCAL, locale);
 
   return (
     <footer className="mt-24 bg-sea text-sea-foreground">
@@ -85,24 +89,24 @@ export function SiteFooter() {
             <li>
               <ContactLink
                 kind="phone"
-                value={PHONE_DISPLAY}
+                value={phoneDisp}
                 href={`tel:+${PHONE_INTL}`}
                 className="inline-flex items-center gap-2.5 transition-colors hover:text-sea-foreground"
               >
                 <ContactIcon name="phone" className="h-4 w-4 text-terracotta" />
-                {PHONE_DISPLAY}
+                {phoneDisp}
               </ContactLink>
             </li>
             <li>
               <ContactLink
                 kind="phone"
                 label={t("contact.mobile")}
-                value={MOBILE_DISPLAY}
+                value={mobileDisp}
                 href={`tel:+${MOBILE_INTL}`}
                 className="inline-flex items-center gap-2.5 transition-colors hover:text-sea-foreground"
               >
                 <ContactIcon name="mobile" className="h-4 w-4 text-terracotta" />
-                {MOBILE_DISPLAY}
+                {mobileDisp}
               </ContactLink>
             </li>
             <li>
@@ -150,7 +154,7 @@ export function SiteFooter() {
               kind="phone"
               label="Viber"
               ariaLabel="Viber"
-              value={PHONE_DISPLAY}
+              value={phoneDisp}
               href={`viber://chat?number=%2B${PHONE_INTL}`}
               className={SOCIAL_CHIP}
             >
