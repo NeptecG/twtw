@@ -161,9 +161,16 @@
     background: var(--terracotta);
     transition: right 0.28s cubic-bezier(0.22, 0.61, 0.36, 1);
   }
-  .nav-underline:hover::after,
   .nav-underline[data-active="true"]::after {
     right: 0;
+  }
+  /* Gate :hover behind (hover: hover) like Tailwind's own hover: variant does,
+     otherwise a tap on touch devices "sticks" the underline on since there is
+     no mouseleave to clear it. */
+  @media (hover: hover) {
+    .nav-underline:hover::after {
+      right: 0;
+    }
   }
 
   /* Staggered fade-up on load */
