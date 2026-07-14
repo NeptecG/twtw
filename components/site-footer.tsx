@@ -85,15 +85,18 @@ export function SiteFooter() {
           <h3 className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-sea-foreground/90">
             {t("footer.contact")}
           </h3>
-          <ul className="mt-4 space-y-2.5 text-sm text-sea-foreground/95">
+          <ul className="mt-4 space-y-2 text-sm">
             <li>
               <ContactLink
                 kind="phone"
                 value={phoneDisp}
                 href={`tel:+${PHONE_INTL}`}
-                className="nav-underline inline-flex items-center gap-2.5 text-sea-foreground/85 transition-colors duration-200 hover:text-terracotta"
+                className="group flex items-center gap-2.5 rounded-xl border border-sea-foreground/15 bg-sea-foreground/5 px-3.5 py-2.5 text-sea-foreground/90 transition-all duration-200 hover:-translate-y-0.5 hover:border-terracotta hover:bg-terracotta hover:text-primary-foreground"
               >
-                <ContactIcon name="phone" className="h-4 w-4 text-terracotta" />
+                <ContactIcon
+                  name="phone"
+                  className="h-4 w-4 shrink-0 text-terracotta transition-colors duration-200 group-hover:text-primary-foreground"
+                />
                 {phoneDisp}
               </ContactLink>
             </li>
@@ -103,9 +106,12 @@ export function SiteFooter() {
                 label={t("contact.mobile")}
                 value={mobileDisp}
                 href={`tel:+${MOBILE_INTL}`}
-                className="nav-underline inline-flex items-center gap-2.5 text-sea-foreground/85 transition-colors duration-200 hover:text-terracotta"
+                className="group flex items-center gap-2.5 rounded-xl border border-sea-foreground/15 bg-sea-foreground/5 px-3.5 py-2.5 text-sea-foreground/90 transition-all duration-200 hover:-translate-y-0.5 hover:border-terracotta hover:bg-terracotta hover:text-primary-foreground"
               >
-                <ContactIcon name="mobile" className="h-4 w-4 text-terracotta" />
+                <ContactIcon
+                  name="mobile"
+                  className="h-4 w-4 shrink-0 text-terracotta transition-colors duration-200 group-hover:text-primary-foreground"
+                />
                 {mobileDisp}
               </ContactLink>
             </li>
@@ -114,10 +120,13 @@ export function SiteFooter() {
                 kind="email"
                 value="hello@ether-naupaktos.gr"
                 href="mailto:hello@ether-naupaktos.gr"
-                className="nav-underline inline-flex items-center gap-2.5 text-sea-foreground/85 transition-colors duration-200 hover:text-terracotta"
+                className="group flex items-center gap-2.5 rounded-xl border border-sea-foreground/15 bg-sea-foreground/5 px-3.5 py-2.5 text-sea-foreground/90 transition-all duration-200 hover:-translate-y-0.5 hover:border-terracotta hover:bg-terracotta hover:text-primary-foreground"
               >
-                <ContactIcon name="email" className="h-4 w-4 text-terracotta" />
-                hello@ether-naupaktos.gr
+                <ContactIcon
+                  name="email"
+                  className="h-4 w-4 shrink-0 text-terracotta transition-colors duration-200 group-hover:text-primary-foreground"
+                />
+                <span className="truncate">hello@ether-naupaktos.gr</span>
               </ContactLink>
             </li>
           </ul>
