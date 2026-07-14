@@ -2,10 +2,20 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { ContactLink } from "@/components/contact-link";
+import { ContactIcon } from "@/components/contact-icons";
 import { BrandIcon } from "@/components/brand-icon";
 
+// Placeholders: swap for the real numbers/profiles when the owner provides them.
 const PHONE_DISPLAY = "+30 26340 00000";
 const PHONE_INTL = "302634000000";
+const MOBILE_DISPLAY = "+30 690 000 0000";
+const MOBILE_INTL = "306900000000";
+const INSTAGRAM_URL = "https://www.instagram.com/ethernaupaktos";
+const FACEBOOK_URL = "https://www.facebook.com/ethernaupaktos";
+const MESSENGER_URL = "https://m.me/ethernaupaktos";
+
+const SOCIAL_CHIP =
+  "flex h-11 w-11 items-center justify-center rounded-xl border border-sea-foreground/15 bg-sea-foreground/5 text-sea-foreground transition-all duration-200 hover:-translate-y-0.5 hover:border-terracotta hover:bg-terracotta hover:text-primary-foreground";
 
 const NAV = [
   { key: "nav.home", href: "/" },
@@ -77,32 +87,22 @@ export function SiteFooter() {
                 kind="phone"
                 value={PHONE_DISPLAY}
                 href={`tel:+${PHONE_INTL}`}
-                className="transition-colors hover:text-sea-foreground"
+                className="inline-flex items-center gap-2.5 transition-colors hover:text-sea-foreground"
               >
+                <ContactIcon name="phone" className="h-4 w-4 text-terracotta" />
                 {PHONE_DISPLAY}
               </ContactLink>
             </li>
             <li>
-              <a
-                href={`https://wa.me/${PHONE_INTL}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 transition-colors hover:text-sea-foreground"
-              >
-                <BrandIcon name="whatsapp" />
-                WhatsApp
-              </a>
-            </li>
-            <li>
               <ContactLink
                 kind="phone"
-                label="Viber"
-                value={PHONE_DISPLAY}
-                href={`viber://chat?number=%2B${PHONE_INTL}`}
-                className="inline-flex items-center gap-2 transition-colors hover:text-sea-foreground"
+                label={t("contact.mobile")}
+                value={MOBILE_DISPLAY}
+                href={`tel:+${MOBILE_INTL}`}
+                className="inline-flex items-center gap-2.5 transition-colors hover:text-sea-foreground"
               >
-                <BrandIcon name="viber" />
-                Viber
+                <ContactIcon name="mobile" className="h-4 w-4 text-terracotta" />
+                {MOBILE_DISPLAY}
               </ContactLink>
             </li>
             <li>
@@ -110,12 +110,62 @@ export function SiteFooter() {
                 kind="email"
                 value="hello@ether-naupaktos.gr"
                 href="mailto:hello@ether-naupaktos.gr"
-                className="transition-colors hover:text-sea-foreground"
+                className="inline-flex items-center gap-2.5 transition-colors hover:text-sea-foreground"
               >
+                <ContactIcon name="email" className="h-4 w-4 text-terracotta" />
                 hello@ether-naupaktos.gr
               </ContactLink>
             </li>
           </ul>
+
+          <div className="mt-5 flex flex-wrap gap-2.5">
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className={SOCIAL_CHIP}
+            >
+              <ContactIcon name="instagram" />
+            </a>
+            <a
+              href={FACEBOOK_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              className={SOCIAL_CHIP}
+            >
+              <ContactIcon name="facebook" />
+            </a>
+            <a
+              href={MESSENGER_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Messenger"
+              className={SOCIAL_CHIP}
+            >
+              <ContactIcon name="messenger" />
+            </a>
+            <ContactLink
+              kind="phone"
+              label="Viber"
+              ariaLabel="Viber"
+              value={PHONE_DISPLAY}
+              href={`viber://chat?number=%2B${PHONE_INTL}`}
+              className={SOCIAL_CHIP}
+            >
+              <ContactIcon name="viber" />
+            </ContactLink>
+            <a
+              href={`https://wa.me/${PHONE_INTL}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="WhatsApp"
+              className={SOCIAL_CHIP}
+            >
+              <BrandIcon name="whatsapp" className="h-5 w-5" />
+            </a>
+          </div>
         </div>
       </div>
 

@@ -189,7 +189,8 @@
   "contact": {
     "title": "Contact us",
     "intro": "Questions about a stay in Naupaktos? Send us a message and we will reply personally.",
-    "phone": "Phone",
+    "phone": "Landline",
+    "mobile": "Mobile",
     "email": "Email",
     "address": "Naupaktos, Greece",
     "copy": "Copy",

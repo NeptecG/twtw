@@ -114,6 +114,19 @@ that is not actually inside `public/apartments/`.
 Phase 2 will add a private admin login where the owner manages apartments,
 availability and booking requests without touching code.
 
+## Replacing the contact placeholders
+
+The footer and the Contact page show a landline, a mobile number, and
+Instagram/Facebook/Messenger profile links. All of these are placeholders
+until the owner provides the real ones:
+
+- `PHONE_DISPLAY` / `PHONE_INTL` (landline) and `MOBILE_DISPLAY` /
+  `MOBILE_INTL` (mobile) in `components/site-footer.tsx` and
+  `app/[locale]/contact/page.tsx`.
+- `INSTAGRAM_URL`, `FACEBOOK_URL`, `MESSENGER_URL` in the same two files.
+
+Update both files together so the footer and the Contact page stay in sync.
+
 ## Useful commands
 
 | Command | What it does |

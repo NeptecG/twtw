@@ -1,12 +1,23 @@
 import type { Metadata } from "next";
 import { setRequestLocale, getTranslations } from "next-intl/server";
-import { Phone, Mail, MapPin } from "lucide-react";
+import { MapPin } from "lucide-react";
 import { ContactForm } from "@/components/contact-form";
 import { ContactLink } from "@/components/contact-link";
+import { ContactIcon } from "@/components/contact-icons";
 import { BrandIcon } from "@/components/brand-icon";
 import { LocationMap } from "@/components/location-map";
 
+// Placeholders: swap for the real numbers/profiles when the owner provides them.
+const PHONE_DISPLAY = "+30 26340 00000";
 const PHONE_INTL = "302634000000";
+const MOBILE_DISPLAY = "+30 690 000 0000";
+const MOBILE_INTL = "306900000000";
+const INSTAGRAM_URL = "https://www.instagram.com/ethernaupaktos";
+const FACEBOOK_URL = "https://www.facebook.com/ethernaupaktos";
+const MESSENGER_URL = "https://m.me/ethernaupaktos";
+
+const SOCIAL_CHIP =
+  "flex h-12 w-12 items-center justify-center rounded-xl border border-border bg-card text-sea transition-all duration-200 hover:-translate-y-0.5 hover:border-terracotta hover:bg-terracotta hover:text-primary-foreground";
 
 export async function generateMetadata({
   params,
@@ -28,9 +39,9 @@ export default async function ContactPage({
   const t = await getTranslations("contact");
 
   const details = [
-    { icon: Phone, kind: "phone" as const, label: t("phone"), value: "+30 26340 00000", href: "tel:+302634000000" },
-    { icon: Mail, kind: "email" as const, label: t("email"), value: "hello@ether-naupaktos.gr", href: "mailto:hello@ether-naupaktos.gr" },
-    { icon: MapPin, kind: undefined, label: t("address"), value: "Naupaktos 303 00, Greece", href: undefined },
+    { iconName: "phone" as const, kind: "phone" as const, label: t("phone"), value: PHONE_DISPLAY, href: `tel:+${PHONE_INTL}` },
+    { iconName: "mobile" as const, kind: "phone" as const, label: t("mobile"), value: MOBILE_DISPLAY, href: `tel:+${MOBILE_INTL}` },
+    { iconName: "email" as const, kind: "email" as const, label: t("email"), value: "hello@ether-naupaktos.gr", href: "mailto:hello@ether-naupaktos.gr" },
   ];
 
   return (
@@ -48,63 +59,84 @@ export default async function ContactPage({
             {details.map((d) => (
               <li key={d.label} className="flex items-start gap-4">
                 <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-sea/10 text-sea">
-                  <d.icon className="h-5 w-5" />
+                  <ContactIcon name={d.iconName} className="h-5 w-5" />
                 </div>
                 <div>
                   <p className="text-xs uppercase tracking-[0.15em] text-muted-foreground">
                     {d.label}
                   </p>
-                  {d.href && d.kind ? (
-                    <ContactLink
-                      kind={d.kind}
-                      value={d.value}
-                      href={d.href}
-                      className="text-lg text-foreground transition-colors hover:text-sea"
-                    >
-                      {d.value}
-                    </ContactLink>
-                  ) : (
-                    <p className="text-lg text-foreground">{d.value}</p>
-                  )}
+                  <ContactLink
+                    kind={d.kind}
+                    value={d.value}
+                    href={d.href}
+                    className="text-lg text-foreground transition-colors hover:text-sea"
+                  >
+                    {d.value}
+                  </ContactLink>
                 </div>
               </li>
             ))}
             <li className="flex items-start gap-4">
               <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-sea/10 text-sea">
-                <BrandIcon name="whatsapp" className="h-5 w-5" />
+                <MapPin className="h-5 w-5" />
               </div>
               <div>
                 <p className="text-xs uppercase tracking-[0.15em] text-muted-foreground">
-                  WhatsApp
+                  {t("address")}
                 </p>
-                <a
-                  href={`https://wa.me/${PHONE_INTL}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-lg text-foreground transition-colors hover:text-sea"
-                >
-                  +30 26340 00000
-                </a>
-              </div>
-            </li>
-            <li className="flex items-start gap-4">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-sea/10 text-sea">
-                <BrandIcon name="viber" className="h-5 w-5" />
-              </div>
-              <div>
-                <p className="text-xs uppercase tracking-[0.15em] text-muted-foreground">Viber</p>
-                <ContactLink
-                  kind="phone"
-                  label="Viber"
-                  value="+30 26340 00000"
-                  href={`viber://chat?number=%2B${PHONE_INTL}`}
-                  className="text-lg text-foreground transition-colors hover:text-sea"
-                >
-                  +30 26340 00000
-                </ContactLink>
+                <p className="text-lg text-foreground">Naupaktos 303 00, Greece</p>
               </div>
             </li>
           </ul>
+
+          <div className="flex flex-wrap gap-3">
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className={SOCIAL_CHIP}
+            >
+              <ContactIcon name="instagram" />
+            </a>
+            <a
+              href={FACEBOOK_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              className={SOCIAL_CHIP}
+            >
+              <ContactIcon name="facebook" />
+            </a>
+            <a
+              href={MESSENGER_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Messenger"
+              className={SOCIAL_CHIP}
+            >
+              <ContactIcon name="messenger" />
+            </a>
+            <ContactLink
+              kind="phone"
+              label="Viber"
+              ariaLabel="Viber"
+              value={PHONE_DISPLAY}
+              href={`viber://chat?number=%2B${PHONE_INTL}`}
+              className={SOCIAL_CHIP}
+            >
+              <ContactIcon name="viber" />
+            </ContactLink>
+            <a
+              href={`https://wa.me/${PHONE_INTL}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="WhatsApp"
+              className={SOCIAL_CHIP}
+            >
+              <BrandIcon name="whatsapp" className="h-5 w-5" />
+            </a>
+          </div>
 
           <LocationMap locale={locale} title="Naupaktos map" className="h-[300px] rounded-3xl" />
         </div>

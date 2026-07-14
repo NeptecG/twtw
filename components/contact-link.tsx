@@ -12,6 +12,7 @@ export function ContactLink({
   value,
   href,
   label,
+  ariaLabel,
   className,
   children,
 }: {
@@ -20,6 +21,8 @@ export function ContactLink({
   href: string;
   /** Overrides the dialog heading (e.g. "Viber"); defaults to the kind label. */
   label?: string;
+  /** aria-label for the trigger link, useful when children is icon-only. */
+  ariaLabel?: string;
   className?: string;
   children: React.ReactNode;
 }) {
@@ -61,6 +64,7 @@ export function ContactLink({
       <a
         href={href}
         className={className}
+        aria-label={ariaLabel}
         onClick={(e) => {
           if (desktop) {
             e.preventDefault();
