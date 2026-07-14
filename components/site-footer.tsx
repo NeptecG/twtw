@@ -64,7 +64,7 @@ export function SiteFooter() {
               <li key={item.key}>
                 <Link
                   href={item.href}
-                  className="text-sea-foreground/95 transition-colors hover:text-sea-foreground"
+                  className="nav-underline inline-block text-sea-foreground/85 transition-colors duration-200 hover:text-terracotta"
                 >
                   {t(item.key)}
                 </Link>
@@ -73,7 +73,7 @@ export function SiteFooter() {
             <li>
               <Link
                 href="/faq"
-                className="text-sea-foreground/95 transition-colors hover:text-sea-foreground"
+                className="nav-underline inline-block text-sea-foreground/85 transition-colors duration-200 hover:text-terracotta"
               >
                 {t("footer.faq")}
               </Link>
@@ -91,7 +91,7 @@ export function SiteFooter() {
                 kind="phone"
                 value={phoneDisp}
                 href={`tel:+${PHONE_INTL}`}
-                className="inline-flex items-center gap-2.5 transition-colors hover:text-sea-foreground"
+                className="nav-underline inline-flex items-center gap-2.5 text-sea-foreground/85 transition-colors duration-200 hover:text-terracotta"
               >
                 <ContactIcon name="phone" className="h-4 w-4 text-terracotta" />
                 {phoneDisp}
@@ -103,7 +103,7 @@ export function SiteFooter() {
                 label={t("contact.mobile")}
                 value={mobileDisp}
                 href={`tel:+${MOBILE_INTL}`}
-                className="inline-flex items-center gap-2.5 transition-colors hover:text-sea-foreground"
+                className="nav-underline inline-flex items-center gap-2.5 text-sea-foreground/85 transition-colors duration-200 hover:text-terracotta"
               >
                 <ContactIcon name="mobile" className="h-4 w-4 text-terracotta" />
                 {mobileDisp}
@@ -114,7 +114,7 @@ export function SiteFooter() {
                 kind="email"
                 value="hello@ether-naupaktos.gr"
                 href="mailto:hello@ether-naupaktos.gr"
-                className="inline-flex items-center gap-2.5 transition-colors hover:text-sea-foreground"
+                className="nav-underline inline-flex items-center gap-2.5 text-sea-foreground/85 transition-colors duration-200 hover:text-terracotta"
               >
                 <ContactIcon name="email" className="h-4 w-4 text-terracotta" />
                 hello@ether-naupaktos.gr

@@ -58,36 +58,38 @@ export default async function ContactPage({
         </div>
 
         <div className="space-y-8">
-          <ul className="space-y-5">
+          <ul className="space-y-3">
             {details.map((d) => (
-              <li key={d.label} className="flex items-start gap-4">
-                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-sea/10 text-sea">
-                  <ContactIcon name={d.iconName} className="h-5 w-5" />
-                </div>
-                <div>
-                  <p className="text-xs uppercase tracking-[0.15em] text-muted-foreground">
-                    {d.label}
-                  </p>
-                  <ContactLink
-                    kind={d.kind}
-                    value={d.value}
-                    href={d.href}
-                    className="text-lg text-foreground transition-colors hover:text-sea"
-                  >
-                    {d.value}
-                  </ContactLink>
-                </div>
+              <li key={d.label}>
+                <ContactLink
+                  kind={d.kind}
+                  value={d.value}
+                  href={d.href}
+                  className="group flex w-full items-center gap-4 rounded-2xl border border-border bg-card p-4 text-left transition-all duration-200 hover:-translate-y-0.5 hover:border-terracotta hover:shadow-[0_14px_34px_-20px_rgba(24,72,58,0.45)]"
+                >
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-sea/10 text-sea transition-colors duration-200 group-hover:bg-terracotta group-hover:text-primary-foreground">
+                    <ContactIcon name={d.iconName} className="h-5 w-5" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-xs uppercase tracking-[0.15em] text-muted-foreground">
+                      {d.label}
+                    </p>
+                    <p className="truncate text-lg text-foreground transition-colors duration-200 group-hover:text-terracotta">
+                      {d.value}
+                    </p>
+                  </div>
+                </ContactLink>
               </li>
             ))}
-            <li className="flex items-start gap-4">
+            <li className="flex items-center gap-4 rounded-2xl border border-border bg-card p-4">
               <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-sea/10 text-sea">
                 <MapPin className="h-5 w-5" />
               </div>
-              <div>
+              <div className="min-w-0">
                 <p className="text-xs uppercase tracking-[0.15em] text-muted-foreground">
                   {t("address")}
                 </p>
-                <p className="text-lg text-foreground">Naupaktos 303 00, Greece</p>
+                <p className="truncate text-lg text-foreground">Naupaktos 303 00, Greece</p>
               </div>
             </li>
           </ul>

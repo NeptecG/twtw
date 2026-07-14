@@ -50,8 +50,10 @@ export function SiteHeader() {
           </span>
         </Link>
 
-        {/* Desktop nav */}
-        <nav className="hidden items-center gap-8 md:flex">
+        {/* Desktop nav. Starts at lg: tablets (768-1023px) don't have room for
+            4 nav items + language switcher + CTA on one line without wrapping
+            mid-label; they get the hamburger menu instead. */}
+        <nav className="hidden items-center gap-6 lg:flex xl:gap-8">
           {NAV.map((item) => {
             const active = isActive(pathname, item.href);
             return (
@@ -60,7 +62,7 @@ export function SiteHeader() {
                 href={item.href}
                 data-active={active}
                 className={cn(
-                  "nav-underline text-sm font-medium tracking-wide transition-colors",
+                  "nav-underline shrink-0 whitespace-nowrap text-sm font-medium tracking-wide transition-colors",
                   active ? "text-foreground" : "text-muted-foreground hover:text-foreground",
                 )}
               >
@@ -74,13 +76,13 @@ export function SiteHeader() {
           <LanguageSwitcher className="hidden sm:inline-flex" />
           <Link
             href="/apartments"
-            className="hidden rounded-full bg-terracotta px-5 py-2 text-sm font-semibold text-primary-foreground transition-colors hover:bg-[#379e86] md:inline-block"
+            className="hidden rounded-full bg-terracotta px-5 py-2 text-sm font-semibold text-primary-foreground transition-colors hover:bg-[#379e86] lg:inline-block"
           >
             {t("bookNow")}
           </Link>
           <button
             type="button"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full text-foreground md:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full text-foreground lg:hidden"
             aria-label="Menu"
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
@@ -92,7 +94,7 @@ export function SiteHeader() {
 
       {/* Mobile menu */}
       {open && (
-        <div className="border-t border-border bg-background md:hidden">
+        <div className="border-t border-border bg-background lg:hidden">
           <nav className="container-wide flex flex-col py-4">
             {NAV.map((item, i) => (
               <Link
