@@ -3,6 +3,7 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { listApartments } from "@/lib/apartments";
 import { ApartmentCard } from "@/components/apartment-card";
+import { JsonLd, lodgingBusinessJsonLd } from "@/components/json-ld";
 import type { Locale } from "@/i18n/routing";
 
 const HERO_IMAGE =
@@ -26,6 +27,7 @@ export default async function HomePage({
 
   return (
     <>
+      <JsonLd data={lodgingBusinessJsonLd()} />
       {/* Hero */}
       <section className="relative isolate overflow-hidden">
         <div className="absolute inset-0 -z-10">

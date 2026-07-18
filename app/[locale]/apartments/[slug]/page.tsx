@@ -8,6 +8,7 @@ import { PhotoGallery } from "@/components/photo-gallery";
 import { AmenityList } from "@/components/amenity-list";
 import { BookingRequestForm } from "@/components/booking-request-form";
 import { LocationMap } from "@/components/location-map";
+import { JsonLd, apartmentJsonLd } from "@/components/json-ld";
 import type { Locale } from "@/i18n/routing";
 
 export async function generateMetadata({
@@ -45,6 +46,11 @@ export default async function ApartmentDetailPage({
 
   const lat = Number(apartment.lat ?? 38.393);
   const lng = Number(apartment.lng ?? 21.828);
+  const priceDisplay = new Intl.NumberFormat(locale, {
+    style: "currency",
+    currency: "EUR",
+    maximumFractionDigits: 0,
+  }).format(Number(apartment.pricePerNight));
 
   const facts = [
     { icon: Users, label: t("guestsLabel", { count: apartment.capacity }) },
@@ -57,6 +63,19 @@ export default async function ApartmentDetailPage({
 
   return (
     <div className="container-page py-10 sm:py-14">
+      <JsonLd
+        data={apartmentJsonLd({
+          name: title,
+          description,
+          slug: apartment.slug,
+          locale,
+          image: apartment.photos[0],
+          price: apartment.pricePerNight,
+          capacity: apartment.capacity,
+          rating: apartment.rating,
+          reviewCount: apartment.reviewCount,
+        })}
+      />
       <Link
         href="/apartments"
         className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
@@ -121,7 +140,10 @@ export default async function ApartmentDetailPage({
         {/* Booking sidebar */}
         <div className="lg:col-span-1">
           <div className="lg:sticky lg:top-24">
-            <div className="rounded-3xl border border-border bg-card p-6 shadow-[0_18px_50px_-30px_rgba(18,59,73,0.55)]">
+            <div
+              id="booking"
+              className="scroll-mt-24 rounded-3xl border border-border bg-card p-6 shadow-[0_18px_50px_-30px_rgba(18,59,73,0.55)]"
+            >
               <BookingRequestForm
                 apartmentId={apartment.id}
                 maxGuests={apartment.capacity}
@@ -131,6 +153,25 @@ export default async function ApartmentDetailPage({
               />
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Spacer so the fixed bar never covers the last content on mobile */}
+      <div className="h-20 lg:hidden" />
+
+      {/* Mobile: price + book always in reach; the form itself is far below the fold */}
+      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-background/95 pb-[env(safe-area-inset-bottom)] backdrop-blur-md lg:hidden">
+        <div className="container-page flex items-center justify-between gap-4 py-3">
+          <div className="flex items-baseline gap-1">
+            <span className="font-display text-2xl text-ink">{priceDisplay}</span>
+            <span className="text-sm text-muted-foreground">{t("perNight")}</span>
+          </div>
+          <a
+            href="#booking"
+            className="rounded-full bg-terracotta px-6 py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-[#379e86]"
+          >
+            {t("requestToBook")}
+          </a>
         </div>
       </div>
     </div>

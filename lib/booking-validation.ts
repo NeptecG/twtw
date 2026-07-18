@@ -17,6 +17,8 @@ export const bookingRequestSchema = z
       .regex(/^\+?[0-9][0-9 ]{4,15}[0-9]$/, "Invalid phone")
       .optional(),
     message: z.string().trim().max(2000).optional(),
+    // Language the guest browsed in; used for their confirmation email.
+    locale: z.enum(["el", "en"]).optional(),
   })
   .refine((v) => new Date(v.checkOut) > new Date(v.checkIn), {
     message: "checkOut must be after checkIn",

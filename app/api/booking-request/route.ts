@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { bookingRequestSchema } from "@/lib/booking-validation";
 import { isRangeAvailable } from "@/lib/availability";
 import { getApartmentById, getApartmentAvailability } from "@/lib/apartments";
-import { sendBookingRequestEmail } from "@/lib/email";
+import { sendBookingRequestEmail, sendGuestConfirmationEmail } from "@/lib/email";
 
 export const runtime = "nodejs";
 
@@ -60,6 +60,21 @@ export async function POST(req: Request) {
   } catch (e) {
     // ponytail: request already handled; email failure must not 500 the guest.
     console.error("booking email failed", e);
+  }
+
+  try {
+    const locale = data.locale ?? "el";
+    await sendGuestConfirmationEmail({
+      to: data.guestEmail,
+      locale,
+      guestName: data.guestName,
+      apartmentTitle: locale === "el" ? apt.titleEl : apt.titleEn,
+      checkIn: data.checkIn,
+      checkOut: data.checkOut,
+      guests: data.guests,
+    });
+  } catch (e) {
+    console.error("guest confirmation email failed", e);
   }
 
   return NextResponse.json({ ok: true });

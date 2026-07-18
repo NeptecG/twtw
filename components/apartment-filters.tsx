@@ -20,6 +20,7 @@ const PRICE_OPTIONS = [80, 100, 120, 160] as const;
 
 export function ApartmentFilters() {
   const t = useTranslations("filters");
+  const tForm = useTranslations("form");
   const tAmenity = useTranslations("amenities");
   const router = useRouter();
   const pathname = usePathname();
@@ -32,9 +33,18 @@ export function ApartmentFilters() {
   const maxPrice = searchParams.get("maxPrice") ?? "";
   const seaView = searchParams.get("seaView") === "1";
   const amenities = (searchParams.get("amenities") ?? "").split(",").filter(Boolean);
+  const checkIn = searchParams.get("checkIn") ?? "";
+  const checkOut = searchParams.get("checkOut") ?? "";
+  const today = new Date().toISOString().slice(0, 10);
 
   const hasFilters =
-    !!guests || !!maxPrice || seaView || amenities.length > 0 || !!searchParams.get("q");
+    !!guests ||
+    !!maxPrice ||
+    seaView ||
+    amenities.length > 0 ||
+    !!searchParams.get("q") ||
+    !!checkIn ||
+    !!checkOut;
 
   function update(mutate: (p: URLSearchParams) => void) {
     const params = new URLSearchParams(Array.from(searchParams.entries()));
@@ -73,6 +83,30 @@ export function ApartmentFilters() {
 
   return (
     <div className="rounded-2xl border border-border bg-card/70 p-4 sm:p-5">
+      {/* Availability dates: native date inputs, filters the list server-side */}
+      <div className="mb-3 grid grid-cols-2 gap-3 sm:max-w-md">
+        <label className="grid gap-1.5 text-sm font-medium">
+          {tForm("checkIn")}
+          <input
+            type="date"
+            value={checkIn}
+            min={today}
+            onChange={(e) => setParam("checkIn", e.target.value || null)}
+            className="h-11 rounded-full border border-border bg-background px-4 text-sm outline-none transition-colors focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+          />
+        </label>
+        <label className="grid gap-1.5 text-sm font-medium">
+          {tForm("checkOut")}
+          <input
+            type="date"
+            value={checkOut}
+            min={checkIn || today}
+            onChange={(e) => setParam("checkOut", e.target.value || null)}
+            className="h-11 rounded-full border border-border bg-background px-4 text-sm outline-none transition-colors focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+          />
+        </label>
+      </div>
+
       <div className="grid gap-3 lg:grid-cols-[1fr_auto_auto_auto]">
         <div className="relative">
           <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />

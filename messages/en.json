@@ -202,10 +202,26 @@
   },
   "footer": {
     "faq": "FAQ",
+    "privacy": "Privacy policy",
     "motto": "Breath in Tranquility",
     "tagline": "A small apartment complex in Naupaktos.",
     "quickLinks": "Explore",
     "contact": "Contact",
     "rights": "All rights reserved."
+  },
+  "privacy": {
+    "title": "Privacy policy",
+    "intro": "We respect your personal data. Here is a plain-language explanation of what we collect and why.",
+    "updated": "Last updated: July 2026",
+    "s1Title": "What we collect",
+    "s1Text": "When you send a booking request or a contact message, we collect only what you type into the form: full name, email, phone (optional), stay dates, number of guests and your message. We collect nothing else.",
+    "s2Title": "How we use it",
+    "s2Text": "Your details are used solely to reply to your request and organise your stay. We do not share them with third parties, we do not sell them, and we do not send marketing emails.",
+    "s3Title": "Cookies and tracking",
+    "s3Text": "This site uses no tracking cookies and no analytics tools. The embedded Google Maps view may set its own cookies when it loads, under Google's own policy.",
+    "s4Title": "How long we keep it",
+    "s4Text": "We keep request details only as long as managing the booking and our legal obligations require. You can ask us to delete them at any time.",
+    "s5Title": "Your rights",
+    "s5Text": "You have the right to access, correct and delete your data under the General Data Protection Regulation (GDPR). For any request, write to hello@ether-naupaktos.gr and we will reply as soon as possible."
   }
 }

@@ -1,10 +1,17 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
 import { setRequestLocale, getTranslations } from "next-intl/server";
-import { listApartments, type ApartmentFilters as Filters } from "@/lib/apartments";
+import {
+  listApartments,
+  getApartmentAvailability,
+  type ApartmentFilters as Filters,
+} from "@/lib/apartments";
+import { isRangeAvailable } from "@/lib/availability";
 import { ApartmentCard } from "@/components/apartment-card";
 import { ApartmentFilters } from "@/components/apartment-filters";
 import type { Locale } from "@/i18n/routing";
+
+const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
 
 export async function generateMetadata({
   params,
@@ -49,7 +56,26 @@ export default async function ApartmentsPage({
   const tNav = await getTranslations("nav");
   const tMeta = await getTranslations("meta");
 
-  const apartments = await listApartments(parseFilters(sp));
+  let apartments = await listApartments(parseFilters(sp));
+
+  // Availability filter: keep only apartments free for the requested dates.
+  // ponytail: one availability lookup per apartment; fine for a 12-unit complex.
+  const checkIn = first(sp.checkIn);
+  const checkOut = first(sp.checkOut);
+  if (
+    checkIn &&
+    checkOut &&
+    ISO_DATE.test(checkIn) &&
+    ISO_DATE.test(checkOut) &&
+    checkOut > checkIn
+  ) {
+    const availability = await Promise.all(
+      apartments.map((a) => getApartmentAvailability(a.id)),
+    );
+    apartments = apartments.filter((_, i) =>
+      isRangeAvailable(checkIn, checkOut, availability[i].blocks, availability[i].confirmed),
+    );
+  }
 
   return (
     <section className="container-page py-14 sm:py-20">

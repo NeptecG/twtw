@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { ChevronDown } from "lucide-react";
+import { JsonLd, faqJsonLd } from "@/components/json-ld";
 
 export async function generateMetadata({
   params,
@@ -27,6 +28,11 @@ export default async function FaqPage({
 
   return (
     <section className="container-page py-14 sm:py-20">
+      <JsonLd
+        data={faqJsonLd(
+          QUESTIONS.map((i) => ({ question: t(`q${i}`), answer: t(`a${i}`) })),
+        )}
+      />
       <h1 className="text-4xl leading-tight sm:text-5xl">{t("title")}</h1>
       <p className="mt-4 max-w-xl text-lg leading-relaxed text-muted-foreground">{t("intro")}</p>
 

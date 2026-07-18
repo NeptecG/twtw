@@ -24,11 +24,15 @@ export async function generateMetadata({
     metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
     title: { default: t("siteName"), template: `%s · ${t("siteName")}` },
     description: t("defaultDescription"),
+    icons: {
+      apple: "/apple-touch-icon.png",
+    },
     openGraph: {
       title: t("siteName"),
       description: t("defaultDescription"),
       type: "website",
       locale,
+      images: [{ url: "/og.png", width: 1200, height: 630 }],
     },
   };
 }

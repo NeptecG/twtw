@@ -37,13 +37,17 @@ export function SiteHeader() {
             src="/logo-mark.png"
             alt=""
             width={36}
-            height={36}
+            height={37}
             className="h-9 w-9 transition-transform duration-500 ease-out group-hover:rotate-[12deg]"
           />
-          <span className="flex flex-col leading-none">
-            <span className="font-display text-2xl font-semibold tracking-tight text-ink">
-              Ether
-            </span>
+          <span className="flex flex-col gap-1 leading-none">
+            <Image
+              src="/logo-wordmark.png"
+              alt="Ether"
+              width={66}
+              height={22}
+              className="h-[22px] w-auto"
+            />
             <span className="hidden text-[0.58rem] font-semibold uppercase tracking-[0.25em] text-muted-foreground sm:block">
               Naupaktos
             </span>

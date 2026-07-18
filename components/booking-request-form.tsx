@@ -78,6 +78,7 @@ export function BookingRequestForm({
       guestEmail: email,
       guestPhone: phone || undefined,
       message: message || undefined,
+      locale: locale === "en" ? ("en" as const) : ("el" as const),
     };
 
     const parsed = bookingRequestSchema.safeParse(payload);

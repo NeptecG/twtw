@@ -37,12 +37,16 @@ export function SiteFooter() {
       <div className="container-wide grid gap-10 py-16 sm:grid-cols-2 lg:grid-cols-4">
         <div className="lg:col-span-2">
           <div className="flex items-center gap-3">
-            <Image src="/logo-mark.png" alt="" width={44} height={44} className="h-11 w-11" />
-            <div className="flex flex-col">
-              <span className="font-display text-3xl font-semibold leading-none tracking-tight">
-                Ether
-              </span>
-              <span className="mt-1 font-display text-sm italic text-sea-foreground/90">
+            <Image src="/logo-mark.png" alt="" width={44} height={45} className="h-11 w-11" />
+            <div className="flex flex-col gap-1.5">
+              <Image
+                src="/logo-wordmark-pale.png"
+                alt="Ether"
+                width={90}
+                height={30}
+                className="h-[30px] w-auto"
+              />
+              <span className="font-display text-sm italic text-sea-foreground/90">
                 {t("footer.motto")}
               </span>
             </div>
@@ -76,6 +80,14 @@ export function SiteFooter() {
                 className="nav-underline inline-block text-sea-foreground/85 transition-colors duration-200 hover:text-terracotta"
               >
                 {t("footer.faq")}
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/privacy"
+                className="nav-underline inline-block text-sea-foreground/85 transition-colors duration-200 hover:text-terracotta"
+              >
+                {t("footer.privacy")}
               </Link>
             </li>
           </ul>
