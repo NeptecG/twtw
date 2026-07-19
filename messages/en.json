@@ -211,6 +211,11 @@
     "contact": "Contact",
     "rights": "All rights reserved."
   },
+  "notFound": {
+    "title": "Oops! This page went for a swim.",
+    "text": "We could not find what you were looking for, but the homepage is one click away.",
+    "cta": "Back to home"
+  },
   "privacy": {
     "title": "Privacy policy",
     "intro": "We respect your personal data. Here is a plain-language explanation of what we collect and why.",
