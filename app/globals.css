@@ -46,6 +46,8 @@
 }
 
 :root {
+  /* Light-only: opts out of browser forced/auto dark mode (Brave, Chrome) */
+  color-scheme: light only;
   --radius: 0.5rem;
 
   /* Palette: pale #e3f1da · mint #c7e5d0 · jade #44b79f · pine #2d5f51 */

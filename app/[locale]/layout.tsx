@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
@@ -12,6 +12,12 @@ import { Toaster } from "@/components/ui/sonner";
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
+
+// Light-only site: stops Brave/Chrome forced dark mode from inverting the palette.
+export const viewport: Viewport = {
+  colorScheme: "only light",
+  themeColor: "#e3f1da",
+};
 
 export async function generateMetadata({
   params,
