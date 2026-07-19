@@ -29,7 +29,7 @@ export function PhotoGallery({ photos, alt }: { photos: string[]; alt: string })
           sizes="(max-width: 1024px) 100vw, 66vw"
           className="object-cover"
         />
-        <span className="pointer-events-none absolute right-4 top-4 z-[2] inline-flex items-center gap-1.5 rounded-full bg-background/85 px-3 py-1.5 text-xs font-medium text-foreground opacity-0 backdrop-blur transition-opacity group-hover:opacity-100">
+        <span className="pointer-events-none absolute right-4 top-4 z-[2] inline-flex items-center gap-1.5 rounded-full bg-background/90 px-3 py-1.5 text-xs font-medium text-foreground opacity-0 transition-opacity group-hover:opacity-100">
           <Expand className="h-3.5 w-3.5" />
           {index + 1} / {safe.length}
         </span>
@@ -39,7 +39,7 @@ export function PhotoGallery({ photos, alt }: { photos: string[]; alt: string })
               type="button"
               onClick={() => go(-1)}
               aria-label="Previous photo"
-              className="absolute left-4 top-1/2 z-[2] inline-flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-background/85 text-foreground backdrop-blur transition hover:bg-background"
+              className="absolute left-4 top-1/2 z-[2] inline-flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-background/90 text-foreground transition hover:bg-background"
             >
               <ChevronLeft className="h-5 w-5" />
             </button>
@@ -47,7 +47,7 @@ export function PhotoGallery({ photos, alt }: { photos: string[]; alt: string })
               type="button"
               onClick={() => go(1)}
               aria-label="Next photo"
-              className="absolute right-4 top-1/2 z-[2] inline-flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-background/85 text-foreground backdrop-blur transition hover:bg-background"
+              className="absolute right-4 top-1/2 z-[2] inline-flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-background/90 text-foreground transition hover:bg-background"
             >
               <ChevronRight className="h-5 w-5" />
             </button>
@@ -197,6 +197,12 @@ function GalleryLightbox({
     else if (dx >= threshold) go(-1);
     else snapBack();
   }
+  // Touch scroll steals the pointer (pan-y): reset instead of leaving the track stuck
+  function onPointerCancel() {
+    if (!activeRef.current) return;
+    activeRef.current = false;
+    snapBack();
+  }
   function onStageClick() {
     if (movedRef.current) {
       movedRef.current = false;
@@ -213,13 +219,14 @@ function GalleryLightbox({
       aria-modal="true"
       aria-label={title}
       className="fixed inset-0 z-[200] flex items-center justify-center"
-      style={{ background: "rgba(15, 35, 28, 0.94)", backdropFilter: "blur(6px)" }}
+      style={{ background: "rgba(15, 35, 28, 0.96)" }}
     >
       <div
         ref={stageRef}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
+        onPointerCancel={onPointerCancel}
         onClick={onStageClick}
         className="absolute inset-0 overflow-hidden"
         style={{ touchAction: "pan-y", cursor: n > 1 ? "grab" : "default" }}
@@ -265,7 +272,7 @@ function GalleryLightbox({
           onClose(idx);
         }}
         aria-label="Close"
-        className="absolute right-[clamp(1rem,4vw,1.8rem)] top-[clamp(1rem,3.5vh,1.6rem)] z-[2] flex h-12 w-12 items-center justify-center rounded-full border border-[#e6f3de]/25 bg-[#e6f3de]/10 text-[#e6f3de] backdrop-blur transition-colors hover:border-terracotta hover:bg-terracotta"
+        className="absolute right-[clamp(1rem,4vw,1.8rem)] top-[clamp(1rem,3.5vh,1.6rem)] z-[2] flex h-12 w-12 items-center justify-center rounded-full border border-[#e6f3de]/25 bg-[#e6f3de]/10 text-[#e6f3de] transition-colors hover:border-terracotta hover:bg-terracotta"
       >
         <X className="h-5 w-5" />
       </button>
@@ -279,7 +286,7 @@ function GalleryLightbox({
               go(-1);
             }}
             aria-label="Previous"
-            className="absolute left-[clamp(0.8rem,3vw,1.8rem)] top-1/2 z-[2] hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-[#e6f3de]/25 bg-[#e6f3de]/10 text-[#e6f3de] backdrop-blur transition-colors hover:border-terracotta hover:bg-terracotta sm:flex"
+            className="absolute left-[clamp(0.8rem,3vw,1.8rem)] top-1/2 z-[2] hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-[#e6f3de]/25 bg-[#e6f3de]/10 text-[#e6f3de] transition-colors hover:border-terracotta hover:bg-terracotta sm:flex"
           >
             <ChevronLeft className="h-6 w-6" />
           </button>
@@ -290,7 +297,7 @@ function GalleryLightbox({
               go(1);
             }}
             aria-label="Next"
-            className="absolute right-[clamp(0.8rem,3vw,1.8rem)] top-1/2 z-[2] hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-[#e6f3de]/25 bg-[#e6f3de]/10 text-[#e6f3de] backdrop-blur transition-colors hover:border-terracotta hover:bg-terracotta sm:flex"
+            className="absolute right-[clamp(0.8rem,3vw,1.8rem)] top-1/2 z-[2] hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-[#e6f3de]/25 bg-[#e6f3de]/10 text-[#e6f3de] transition-colors hover:border-terracotta hover:bg-terracotta sm:flex"
           >
             <ChevronRight className="h-6 w-6" />
           </button>

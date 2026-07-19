@@ -1,6 +1,8 @@
 "use client";
 
+import { useLocale } from "next-intl";
 import type { DateRange } from "react-day-picker";
+import { el, enUS } from "react-day-picker/locale";
 import { Calendar } from "@/components/ui/calendar";
 import { disabledDateMatchers } from "@/lib/availability";
 
@@ -15,6 +17,7 @@ export function AvailabilityCalendar({
   value: DateRange | undefined;
   onChange: (range: DateRange | undefined) => void;
 }) {
+  const locale = useLocale();
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
@@ -27,6 +30,7 @@ export function AvailabilityCalendar({
       onSelect={onChange}
       disabled={disabled}
       numberOfMonths={1}
+      locale={locale === "el" ? el : enUS}
       className="rounded-xl border border-border bg-background p-3"
     />
   );

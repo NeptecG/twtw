@@ -2,8 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
-import { useTranslations } from "next-intl";
-import { Waves, Search, X } from "lucide-react";
+import { useTranslations, useLocale } from "next-intl";
+import type { DateRange } from "react-day-picker";
+import { el, enUS } from "react-day-picker/locale";
+import { Waves, Search, X, CalendarDays } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -11,6 +13,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
@@ -18,10 +22,18 @@ const AMENITY_CHIPS = ["wifi", "ac", "parking", "pets", "kitchen", "balcony"] as
 const GUEST_OPTIONS = [1, 2, 3, 4, 5, 6] as const;
 const PRICE_OPTIONS = [80, 100, 120, 160] as const;
 
+// Local-time date <-> "YYYY-MM-DD", so the calendar never shifts a day across timezones.
+const parseDay = (s: string) => {
+  const [y, m, d] = s.split("-").map(Number);
+  return new Date(y, m - 1, d);
+};
+const toISO = (d: Date) =>
+  `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+
 export function ApartmentFilters() {
   const t = useTranslations("filters");
-  const tForm = useTranslations("form");
   const tAmenity = useTranslations("amenities");
+  const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -35,7 +47,16 @@ export function ApartmentFilters() {
   const amenities = (searchParams.get("amenities") ?? "").split(",").filter(Boolean);
   const checkIn = searchParams.get("checkIn") ?? "";
   const checkOut = searchParams.get("checkOut") ?? "";
-  const today = new Date().toISOString().slice(0, 10);
+
+  // One combined check-in/check-out picker. URL is the source of truth; `pending`
+  // holds a half-finished selection while the popover is open.
+  const [datesOpen, setDatesOpen] = useState(false);
+  const [pending, setPending] = useState<DateRange | undefined>(undefined);
+  const urlRange: DateRange | undefined =
+    checkIn && checkOut ? { from: parseDay(checkIn), to: parseDay(checkOut) } : undefined;
+  const selectedRange = pending ?? urlRange;
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
 
   const hasFilters =
     !!guests ||
@@ -67,8 +88,31 @@ export function ApartmentFilters() {
     setParam("amenities", next.length ? next.join(",") : null);
   }
 
+  function onDatesSelect(r: DateRange | undefined) {
+    if (r?.from && r?.to && toISO(r.to) > toISO(r.from)) {
+      setPending(undefined);
+      setDatesOpen(false);
+      update((p) => {
+        p.set("checkIn", toISO(r.from!));
+        p.set("checkOut", toISO(r.to!));
+      });
+    } else {
+      setPending(r);
+    }
+  }
+
+  function clearDates() {
+    setPending(undefined);
+    setDatesOpen(false);
+    update((p) => {
+      p.delete("checkIn");
+      p.delete("checkOut");
+    });
+  }
+
   function clearAll() {
     setSearch("");
+    setPending(undefined);
     router.push(pathname, { scroll: false });
   }
 
@@ -81,33 +125,15 @@ export function ApartmentFilters() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search]);
 
+  const dateFmt = new Intl.DateTimeFormat(locale, { day: "numeric", month: "short" });
+  const datesLabel =
+    checkIn && checkOut
+      ? `${dateFmt.format(parseDay(checkIn))} · ${dateFmt.format(parseDay(checkOut))}`
+      : t("dates");
+
   return (
     <div className="rounded-2xl border border-border bg-card/70 p-4 sm:p-5">
-      {/* Availability dates: native date inputs, filters the list server-side */}
-      <div className="mb-3 grid grid-cols-2 gap-3 sm:max-w-md">
-        <label className="grid gap-1.5 text-sm font-medium">
-          {tForm("checkIn")}
-          <input
-            type="date"
-            value={checkIn}
-            min={today}
-            onChange={(e) => setParam("checkIn", e.target.value || null)}
-            className="h-11 rounded-full border border-border bg-background px-4 text-sm outline-none transition-colors focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
-          />
-        </label>
-        <label className="grid gap-1.5 text-sm font-medium">
-          {tForm("checkOut")}
-          <input
-            type="date"
-            value={checkOut}
-            min={checkIn || today}
-            onChange={(e) => setParam("checkOut", e.target.value || null)}
-            className="h-11 rounded-full border border-border bg-background px-4 text-sm outline-none transition-colors focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
-          />
-        </label>
-      </div>
-
-      <div className="grid gap-3 lg:grid-cols-[1fr_auto_auto_auto]">
+      <div className="grid gap-3 lg:grid-cols-[1fr_auto_auto_auto_auto]">
         <div className="relative">
           <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
           <Input
@@ -118,6 +144,49 @@ export function ApartmentFilters() {
             aria-label={t("search")}
           />
         </div>
+
+        <Popover
+          open={datesOpen}
+          onOpenChange={(o) => {
+            setDatesOpen(o);
+            if (!o) setPending(undefined);
+          }}
+        >
+          <PopoverTrigger
+            aria-label={t("dates")}
+            className={cn(
+              "inline-flex h-11 items-center justify-center gap-2 rounded-full border px-5 text-sm font-medium transition-colors",
+              checkIn && checkOut
+                ? "border-sea bg-sea/10 text-sea"
+                : "border-border bg-background text-foreground hover:bg-secondary",
+            )}
+          >
+            <CalendarDays className="h-4 w-4" />
+            {datesLabel}
+          </PopoverTrigger>
+          <PopoverContent className="w-auto p-2" align="start">
+            <Calendar
+              mode="range"
+              selected={selectedRange}
+              onSelect={onDatesSelect}
+              disabled={{ before: today }}
+              defaultMonth={selectedRange?.from ?? today}
+              numberOfMonths={1}
+              locale={locale === "el" ? el : enUS}
+              className="p-1"
+            />
+            {checkIn && checkOut && (
+              <button
+                type="button"
+                onClick={clearDates}
+                className="mx-auto mb-1 inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              >
+                <X className="h-4 w-4" />
+                {t("datesClear")}
+              </button>
+            )}
+          </PopoverContent>
+        </Popover>
 
         <Select
           value={guests || "any"}

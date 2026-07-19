@@ -43,6 +43,8 @@
     "price": "Max price / night",
     "priceUpTo": "Up to €{count}",
     "seaView": "Sea view",
+    "dates": "Dates",
+    "datesClear": "Clear dates",
     "amenities": "Amenities",
     "search": "Search",
     "searchPlaceholder": "Search apartments",
