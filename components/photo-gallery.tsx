@@ -219,7 +219,12 @@ function GalleryLightbox({
       aria-modal="true"
       aria-label={title}
       className="fixed inset-0 z-[200] flex items-center justify-center"
-      style={{ background: "rgba(15, 35, 28, 0.96)" }}
+      style={{
+        // Brand greens (pine center -> deep ink edges). No backdrop-filter:
+        // a full-viewport blur re-renders every frame and crashes weak GPUs.
+        background:
+          "radial-gradient(circle at 50% 42%, rgba(45, 95, 81, 0.94), rgba(15, 35, 28, 0.975))",
+      }}
     >
       <div
         ref={stageRef}
